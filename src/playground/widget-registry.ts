@@ -44,6 +44,7 @@ export type WidgetId =
 export type WidgetEntry = {
   id: WidgetId;
   label: string;
+  folderName: string;
   component: ComponentType<{ version?: string }>;
   versions: readonly string[];
 };
@@ -52,108 +53,126 @@ export const WIDGET_REGISTRY: Record<WidgetId, WidgetEntry> = {
   'onboarding': {
     id: 'onboarding',
     label: 'Onboarding',
+    folderName: 'Onboarding',
     component: Onboarding as ComponentType<{ version?: string }>,
     versions: Object.keys(OnboardingVersions),
   },
   'alerta-equipe': {
     id: 'alerta-equipe',
     label: 'Alerta Equipe',
+    folderName: 'AlertaEquipe',
     component: AlertaEquipe as ComponentType<{ version?: string }>,
     versions: Object.keys(AlertaEquipeVersions),
   },
   'alerta-dispositivo': {
     id: 'alerta-dispositivo',
     label: 'Alerta Dispositivo',
+    folderName: 'AlertaDispositivo',
     component: AlertaDispositivo as ComponentType<{ version?: string }>,
     versions: Object.keys(AlertaDispositivoVersions),
   },
   'card-copiloto': {
     id: 'card-copiloto',
     label: 'Card Copiloto',
+    folderName: 'CardCopiloto',
     component: CardCopiloto as ComponentType<{ version?: string }>,
     versions: Object.keys(CardCopilotoVersions),
   },
   'card-saldo': {
     id: 'card-saldo',
     label: 'Card Saldo',
+    folderName: 'CardSaldo',
     component: CardSaldo as ComponentType<{ version?: string }>,
     versions: Object.keys(CardSaldoVersions),
   },
   'carrossel-top': {
     id: 'carrossel-top',
     label: 'Carrossel Top',
+    folderName: 'CarrosselTop',
     component: CarrosselTop as ComponentType<{ version?: string }>,
     versions: Object.keys(CarrosselTopVersions),
   },
   'banner-capital-giro': {
     id: 'banner-capital-giro',
     label: 'Banner Capital de Giro',
+    folderName: 'BannerCapitalGiro',
     component: BannerCapitalGiro as ComponentType<{ version?: string }>,
     versions: Object.keys(BannerCapitalGiroVersions),
   },
   'banner-autocredenciamento': {
     id: 'banner-autocredenciamento',
     label: 'Banner Autocredenciamento',
+    folderName: 'BannerAutocredenciamento',
     component: BannerAutocredenciamento as ComponentType<{ version?: string }>,
     versions: Object.keys(BannerAutocredenciamentoVersions),
   },
   'card-recebimentos': {
     id: 'card-recebimentos',
     label: 'Card Recebimentos',
+    folderName: 'CardRecebimentos',
     component: CardRecebimentos as ComponentType<{ version?: string }>,
     versions: Object.keys(CardRecebimentosVersions),
   },
   'toggle-ton-fast': {
     id: 'toggle-ton-fast',
     label: 'Toggle Ton Fast',
+    folderName: 'ToggleTonFast',
     component: ToggleTonFast as ComponentType<{ version?: string }>,
     versions: Object.keys(ToggleTonFastVersions),
   },
   'card-vendas': {
     id: 'card-vendas',
     label: 'Card Vendas',
+    folderName: 'CardVendas',
     component: CardVendas as ComponentType<{ version?: string }>,
     versions: Object.keys(CardVendasVersions),
   },
   'card-cartao-tracking': {
     id: 'card-cartao-tracking',
     label: 'Card Cartão · Tracking',
+    folderName: 'CardCartaoTracking',
     component: CardCartaoTracking as ComponentType<{ version?: string }>,
     versions: Object.keys(CardCartaoTrackingVersions),
   },
   'card-cartao-fatura': {
     id: 'card-cartao-fatura',
     label: 'Card Cartão · Fatura',
+    folderName: 'CardCartaoFatura',
     component: CardCartaoFatura as ComponentType<{ version?: string }>,
     versions: Object.keys(CardCartaoFaturaVersions),
   },
   'card-meta-vendas': {
     id: 'card-meta-vendas',
     label: 'Card Meta de Vendas',
+    folderName: 'CardMetaVendas',
     component: CardMetaVendas as ComponentType<{ version?: string }>,
     versions: Object.keys(CardMetaVendasVersions),
   },
   'card-maquininhas': {
     id: 'card-maquininhas',
     label: 'Card Maquininhas',
+    folderName: 'CardMaquininhas',
     component: CardMaquininhas as ComponentType<{ version?: string }>,
     versions: Object.keys(CardMaquininhasVersions),
   },
   'grid-atalhos': {
     id: 'grid-atalhos',
     label: 'Grid de Atalhos',
+    folderName: 'GridAtalhos',
     component: GridAtalhos as ComponentType<{ version?: string }>,
     versions: Object.keys(GridAtalhosVersions),
   },
   'banners-bottom': {
     id: 'banners-bottom',
     label: 'Banners Bottom',
+    folderName: 'BannersBottom',
     component: BannersBottom as ComponentType<{ version?: string }>,
     versions: Object.keys(BannersBottomVersions),
   },
   'card-meu-agente': {
     id: 'card-meu-agente',
     label: 'Card Meu Agente',
+    folderName: 'CardMeuAgente',
     component: CardMeuAgente as ComponentType<{ version?: string }>,
     versions: Object.keys(CardMeuAgenteVersions),
   },

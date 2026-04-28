@@ -3,8 +3,13 @@ import { WIDGET_REGISTRY, type WidgetId } from '@/playground';
 
 const STORAGE_KEY = 'stone-promotion-v1';
 
+export type VersionMetadata = {
+  label?: string;
+};
+
 type PromotionConfig = {
   promoted: Partial<Record<WidgetId, string[]>>;
+  metadata: Partial<Record<WidgetId, Record<string, VersionMetadata>>>;
 };
 
 function buildDefault(): PromotionConfig {
@@ -12,28 +17,44 @@ function buildDefault(): PromotionConfig {
   for (const id of Object.keys(WIDGET_REGISTRY) as WidgetId[]) {
     promoted[id] = [...WIDGET_REGISTRY[id].versions];
   }
-  return { promoted };
+  return { promoted, metadata: {} };
 }
 
 function sanitize(raw: unknown): PromotionConfig {
   const defaults = buildDefault();
   if (!raw || typeof raw !== 'object') return defaults;
   const candidate = raw as Partial<PromotionConfig>;
-  if (!candidate.promoted || typeof candidate.promoted !== 'object') return defaults;
 
   const promoted: Partial<Record<WidgetId, string[]>> = {};
   for (const id of Object.keys(WIDGET_REGISTRY) as WidgetId[]) {
-    const stored = candidate.promoted[id];
+    const stored = candidate.promoted?.[id];
     const valid = WIDGET_REGISTRY[id].versions;
     if (Array.isArray(stored)) {
-      // Mantém apenas versões que ainda existem
       promoted[id] = stored.filter((v) => valid.includes(v));
     } else {
-      // Widget ainda não tem registro: promove todas
       promoted[id] = [...valid];
     }
   }
-  return { promoted };
+
+  const metadata: Partial<Record<WidgetId, Record<string, VersionMetadata>>> = {};
+  if (candidate.metadata && typeof candidate.metadata === 'object') {
+    for (const id of Object.keys(WIDGET_REGISTRY) as WidgetId[]) {
+      const widgetMeta = candidate.metadata[id];
+      if (widgetMeta && typeof widgetMeta === 'object') {
+        const valid = WIDGET_REGISTRY[id].versions;
+        const cleaned: Record<string, VersionMetadata> = {};
+        for (const [version, meta] of Object.entries(widgetMeta)) {
+          if (!valid.includes(version) || !meta || typeof meta !== 'object') continue;
+          if (typeof meta.label === 'string' && meta.label !== '') {
+            cleaned[version] = { label: meta.label };
+          }
+        }
+        if (Object.keys(cleaned).length > 0) metadata[id] = cleaned;
+      }
+    }
+  }
+
+  return { promoted, metadata };
 }
 
 function load(): PromotionConfig {
@@ -60,6 +81,9 @@ export type PromotionActions = {
   isPromoted: (widgetId: WidgetId, version: string) => boolean;
   togglePromotion: (widgetId: WidgetId, version: string) => void;
   getPromotedVersions: (widgetId: WidgetId) => string[];
+  getMetadata: (widgetId: WidgetId, version: string) => VersionMetadata;
+  setLabel: (widgetId: WidgetId, version: string, label: string) => void;
+  hardDeleteVersion: (widgetId: WidgetId, version: string) => Promise<void>;
   reset: () => void;
 };
 
@@ -83,9 +107,7 @@ export function usePromotionConfig(): PromotionActions {
       const next = current.includes(version)
         ? current.filter((v) => v !== version)
         : [...current, version].sort();
-      return {
-        promoted: { ...prev.promoted, [widgetId]: next },
-      };
+      return { ...prev, promoted: { ...prev.promoted, [widgetId]: next } };
     });
   }, []);
 
@@ -94,9 +116,70 @@ export function usePromotionConfig(): PromotionActions {
     [config],
   );
 
+  const getMetadata = useCallback(
+    (widgetId: WidgetId, version: string): VersionMetadata => {
+      return config.metadata[widgetId]?.[version] ?? {};
+    },
+    [config],
+  );
+
+  const setLabel = useCallback((widgetId: WidgetId, version: string, label: string) => {
+    setConfig((prev) => {
+      const widgetMeta = { ...(prev.metadata[widgetId] ?? {}) };
+      const trimmed = label.trim();
+      if (trimmed === '') {
+        delete widgetMeta[version];
+      } else {
+        widgetMeta[version] = { ...(widgetMeta[version] ?? {}), label: trimmed };
+      }
+      return { ...prev, metadata: { ...prev.metadata, [widgetId]: widgetMeta } };
+    });
+  }, []);
+
+  const hardDeleteVersion = useCallback(
+    async (widgetId: WidgetId, version: string) => {
+      if (version === 'v1') {
+        throw new Error('A versão v1 não pode ser excluída');
+      }
+      const folderName = WIDGET_REGISTRY[widgetId].folderName;
+      const res = await fetch('/api/version/delete', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ folderName, version }),
+      });
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        throw new Error(body.error || `Falha ao excluir (${res.status})`);
+      }
+      // Limpa estado local antes de recarregar
+      setConfig((prev) => {
+        const promoted = { ...prev.promoted };
+        const list = promoted[widgetId] ?? [];
+        promoted[widgetId] = list.filter((v) => v !== version);
+        const metadata = { ...prev.metadata };
+        const widgetMeta = { ...(metadata[widgetId] ?? {}) };
+        delete widgetMeta[version];
+        metadata[widgetId] = widgetMeta;
+        return { promoted, metadata };
+      });
+      // Reload pra import.meta.glob recompilar e remover a versão
+      setTimeout(() => window.location.reload(), 100);
+    },
+    [],
+  );
+
   const reset = useCallback(() => {
     setConfig(buildDefault());
   }, []);
 
-  return { config, isPromoted, togglePromotion, getPromotedVersions, reset };
+  return {
+    config,
+    isPromoted,
+    togglePromotion,
+    getPromotedVersions,
+    getMetadata,
+    setLabel,
+    hardDeleteVersion,
+    reset,
+  };
 }

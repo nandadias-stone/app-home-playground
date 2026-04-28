@@ -16,4 +16,5 @@ dist-ssr
 
 # Claude Code internals
 .claude/scheduled_tasks.lock
+.claude/worktrees/
 

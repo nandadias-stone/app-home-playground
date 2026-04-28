@@ -1,4 +1,6 @@
+import { useMemo } from 'react';
 import { WIDGET_REGISTRY, type WidgetId } from '@/playground';
+import { usePromotion } from './PromotionContext';
 import { VersionCard } from './VersionCard';
 import styles from './VersionsGrid.module.css';
 
@@ -8,52 +10,38 @@ type VersionsGridProps = {
 
 export function VersionsGrid({ widgetId }: VersionsGridProps) {
   const entry = WIDGET_REGISTRY[widgetId];
-  const versions = entry.versions;
+  const { isPromoted } = usePromotion();
+
+  const sortedVersions = useMemo(() => {
+    return [...entry.versions].sort((a, b) => {
+      const aP = isPromoted(widgetId, a) ? 1 : 0;
+      const bP = isPromoted(widgetId, b) ? 1 : 0;
+      if (aP !== bP) return bP - aP;
+      return a.localeCompare(b);
+    });
+  }, [entry.versions, widgetId, isPromoted]);
+
+  const promotedCount = sortedVersions.filter((v) => isPromoted(widgetId, v)).length;
 
   return (
     <section className={styles.grid}>
       <header className={styles.title}>
         <h1 className={styles.heading}>{entry.label}</h1>
         <p className={styles.summary}>
-          {versions.length} {versions.length === 1 ? 'versão criada' : 'versões criadas'}
+          {sortedVersions.length} {sortedVersions.length === 1 ? 'versão' : 'versões'} ·{' '}
+          {promotedCount} disponível{promotedCount === 1 ? '' : 'is'} no playground
         </p>
       </header>
 
-      {versions.length === 0 ? (
+      {sortedVersions.length === 0 ? (
         <p className={styles.empty}>Nenhuma versão deste widget foi encontrada.</p>
       ) : (
         <div className={styles.cards}>
-          {versions.map((version) => (
+          {sortedVersions.map((version) => (
             <VersionCard key={version} widgetId={widgetId} version={version} />
           ))}
         </div>
       )}
-
-      <footer className={styles.help}>
-        <p className={styles.helpTitle}>Como adicionar uma nova versão</p>
-        <ol className={styles.helpSteps}>
-          <li>
-            Duplique <code>v{versions.length || 1}.tsx</code> e{' '}
-            <code>v{versions.length || 1}.module.css</code> em{' '}
-            <code>src/widgets/{firstFolderName(entry.label)}/</code>
-          </li>
-          <li>
-            Renomeie a função interna para <code>{firstFolderName(entry.label)}V{versions.length + 1}</code>
-          </li>
-          <li>Salve. Esta página detecta automaticamente.</li>
-        </ol>
-      </footer>
     </section>
   );
-}
-
-function firstFolderName(label: string): string {
-  // Heurística simples para sugerir o nome da pasta a partir do label
-  return label
-    .normalize('NFD')
-    .replace(/[̀-ͯ]/g, '')
-    .replace(/[·.]/g, '')
-    .split(/\s+/)
-    .map((s) => s.charAt(0).toUpperCase() + s.slice(1).toLowerCase())
-    .join('');
 }
