@@ -36,7 +36,7 @@
 
 /* Variants */
 .variant-neutral {
-  background-color: var(--jade-bg-surface);
+  background-color: var(--jade-bg-neutral-subtle);
   border-color: var(--jade-border-low);
   color: var(--jade-content-high);
 }

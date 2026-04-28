@@ -1,5 +1,5 @@
 import { Card, Icon } from '@/jade';
-import { ConsultantAvatar } from '@/assets/illustrations/ConsultantAvatar';
+import consultorImg from '@/assets/images/consultor.png';
 import styles from './CardMeuAgente.module.css';
 
 type CardMeuAgenteProps = {
@@ -18,7 +18,7 @@ export function CardMeuAgente({
   return (
     <Card padding="medium" className={styles.card}>
       <button className={styles.btn} type="button" onClick={onClick}>
-        <ConsultantAvatar size={56} />
+        <img src={consultorImg} alt={nome} className={styles.avatar} width={56} height={56} />
         <div className={styles.body}>
           <span className={`${styles.cargo} jade-text-small-regular`}>{cargo}</span>
           <span className={`${styles.nome} jade-heading-xsmall`}>{nome}</span>

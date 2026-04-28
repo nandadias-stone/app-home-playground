@@ -6,7 +6,7 @@
 }
 
 .headerLabel {
-  color: var(--jade-content-brand);
+  color: var(--jade-content-medium);
 }
 
 .group {
@@ -19,8 +19,8 @@
   align-items: center;
   gap: var(--jade-space-100);
   padding: var(--jade-space-150) var(--jade-space-200);
-  background-color: var(--jade-bg-neutral-subtle);
   color: var(--jade-content-high);
+  border-top: 1px solid var(--jade-border-low);
 }
 
 .groupTitle {

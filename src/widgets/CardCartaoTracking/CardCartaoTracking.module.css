@@ -11,3 +11,7 @@
   color: var(--jade-content-positive);
   margin-bottom: var(--jade-space-200);
 }
+
+.cta {
+  border-radius: var(--jade-radius-interactive);
+}

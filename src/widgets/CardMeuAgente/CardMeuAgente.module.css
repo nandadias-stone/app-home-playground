@@ -2,6 +2,14 @@
   padding: 0;
 }
 
+.avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
 .btn {
   display: flex;
   align-items: center;

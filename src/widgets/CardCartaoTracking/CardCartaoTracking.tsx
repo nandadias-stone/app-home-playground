@@ -25,7 +25,13 @@ export function CardCartaoTracking({
         <StatusTracker steps={steps} current={current} />
       </div>
       <p className={`${styles.status} jade-text-large-semibold`}>{status}</p>
-      <Button variant="primary" size="medium" fullWidth onClick={onConfirm}>
+      <Button
+        variant="primary"
+        size="medium"
+        fullWidth
+        className={styles.cta}
+        onClick={onConfirm}
+      >
         {buttonLabel}
       </Button>
     </Card>

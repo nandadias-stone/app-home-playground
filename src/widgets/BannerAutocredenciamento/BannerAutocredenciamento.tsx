@@ -1,5 +1,5 @@
 import { Link } from '@/jade';
-import { PosTerminal } from '@/assets/illustrations/PosTerminal';
+import maquininhaImg from '@/assets/images/maquininha.png';
 import styles from './BannerAutocredenciamento.module.css';
 
 type BannerAutocredenciamentoProps = {
@@ -23,7 +23,7 @@ export function BannerAutocredenciamento({
         <Link variant="brand" trailingIcon="chevron-right">{actionLabel}</Link>
       </div>
       <div className={styles.illustration} aria-hidden="true">
-        <PosTerminal size={86} />
+        <img src={maquininhaImg} alt="" className={styles.maquininha} />
       </div>
     </button>
   );

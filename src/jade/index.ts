@@ -3,7 +3,7 @@ export { Brand } from './Brand';
 export { Button } from './Button';
 export { Card } from './Card';
 export { Divider } from './Divider';
-export { Icon } from './Icon';
+export { Icon, IconAsset, ICON_GENERAL, ICON_MENU_BOTTOM, ICON_MENU_GRID } from './Icon';
 export type { IconName } from './Icon';
 export { IconButton } from './IconButton';
 export { IconShape } from './IconShape';

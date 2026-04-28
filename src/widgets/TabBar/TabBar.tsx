@@ -1,18 +1,18 @@
-import { Icon, type IconName } from '@/jade';
+import { IconAsset, ICON_MENU_BOTTOM } from '@/jade';
 import styles from './TabBar.module.css';
 
 type Tab = {
   id: string;
   label: string;
-  icon: IconName;
-  iconActive?: IconName;
+  /** Nome do arquivo em src/assets/icons/menu-bottom/ (sem .svg) */
+  asset: string;
 };
 
 const DEFAULT_TABS: Tab[] = [
-  { id: 'inicio', label: 'Início', icon: 'house', iconActive: 'house-fill' },
-  { id: 'extrato', label: 'Extrato', icon: 'note-text' },
-  { id: 'recebimentos', label: 'Recebimentos', icon: 'calendar' },
-  { id: 'vendas', label: 'Vendas', icon: 'storefront' },
+  { id: 'inicio', label: 'Início', asset: 'home' },
+  { id: 'extrato', label: 'Extrato', asset: 'extrato' },
+  { id: 'recebimentos', label: 'Recebimentos', asset: 'recebimentos' },
+  { id: 'vendas', label: 'Vendas', asset: 'vendas' },
 ];
 
 type TabBarProps = {
@@ -27,7 +27,7 @@ export function TabBar({ tabs = DEFAULT_TABS, active = 'inicio', onChange }: Tab
       <ul className={styles.list}>
         {tabs.map((tab) => {
           const isActive = active === tab.id;
-          const iconName = isActive && tab.iconActive ? tab.iconActive : tab.icon;
+          const url = ICON_MENU_BOTTOM[tab.asset];
           return (
             <li key={tab.id} className={styles.item}>
               <button
@@ -36,11 +36,17 @@ export function TabBar({ tabs = DEFAULT_TABS, active = 'inicio', onChange }: Tab
                 onClick={() => onChange?.(tab.id)}
                 aria-current={isActive ? 'page' : undefined}
               >
-                <Icon
-                  name={iconName}
-                  size={24}
-                  color={isActive ? 'var(--jade-content-brand)' : 'var(--jade-content-medium)'}
-                />
+                {url && (
+                  <IconAsset
+                    src={url}
+                    size={24}
+                    color={
+                      isActive
+                        ? 'var(--jade-content-brand)'
+                        : 'var(--jade-content-medium)'
+                    }
+                  />
+                )}
                 <span className={styles.label}>{tab.label}</span>
               </button>
             </li>

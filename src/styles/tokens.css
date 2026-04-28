@@ -190,6 +190,6 @@
   font-size: var(--jade-fs-50);
   line-height: var(--jade-lh-100);
   font-weight: var(--jade-fw-semibold);
-  letter-spacing: 0.5em;
+  letter-spacing: 0.96px;
   text-transform: uppercase;
 }
