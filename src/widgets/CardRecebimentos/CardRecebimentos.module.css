@@ -1,0 +1,130 @@
+.headerBlock,
+.futurosBlock {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--jade-space-100);
+  padding: var(--jade-space-200);
+  background: transparent;
+  border: 0;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+}
+
+.headerBlock {
+  cursor: pointer;
+}
+
+.futurosBlock {
+  cursor: default;
+  padding-bottom: var(--jade-space-100);
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+.label {
+  color: var(--jade-content-medium);
+}
+
+.amount {
+  color: var(--jade-content-high);
+}
+
+.dias {
+  display: flex;
+  gap: var(--jade-space-100);
+  padding: 0 var(--jade-space-200) var(--jade-space-200);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.dias::-webkit-scrollbar {
+  display: none;
+}
+
+.diaCard {
+  display: flex;
+  align-items: center;
+  gap: var(--jade-space-100);
+  padding: var(--jade-space-100);
+  background-color: var(--jade-bg-neutral-subtle);
+  border-radius: var(--jade-radius-interactive);
+  flex-shrink: 0;
+}
+
+.diaBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--jade-radius-xs);
+  background-color: var(--jade-bg-surface);
+}
+
+.diaBoxHighlight {
+  background-color: var(--jade-bg-positive-subtle);
+  color: var(--jade-content-positive);
+}
+
+.diaNum {
+  font-size: 14px;
+  font-weight: var(--jade-fw-semibold);
+  line-height: 1;
+  color: var(--jade-content-high);
+}
+
+.diaBoxHighlight .diaNum {
+  color: var(--jade-content-positive);
+}
+
+.diaLabel {
+  font-size: 9px;
+  font-weight: var(--jade-fw-medium);
+  line-height: 1;
+  color: var(--jade-content-medium);
+  margin-top: 2px;
+  text-transform: lowercase;
+}
+
+.diaBoxHighlight .diaLabel {
+  color: var(--jade-content-positive);
+}
+
+.diaInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.diaValor {
+  color: var(--jade-content-high);
+}
+
+.diaSecondary {
+  color: var(--jade-content-medium);
+}
+
+.antecipBlock {
+  display: flex;
+  align-items: center;
+  gap: var(--jade-space-150);
+  padding: var(--jade-space-200);
+  width: 100%;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  text-align: left;
+}
+
+.antecipTitle {
+  color: var(--jade-content-high);
+}

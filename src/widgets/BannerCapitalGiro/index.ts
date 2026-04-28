@@ -1,0 +1,1 @@
+export { BannerCapitalGiro } from './BannerCapitalGiro';

@@ -1,0 +1,1 @@
+export { CardMetaVendas } from './CardMetaVendas';

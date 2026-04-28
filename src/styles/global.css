@@ -1,0 +1,13 @@
+html,
+body {
+  font-family: var(--jade-font-family);
+  font-size: var(--jade-fs-75);
+  color: var(--jade-content-high);
+  background-color: var(--jade-bg-body);
+}
+
+#root {
+  min-height: 100%;
+  width: 100%;
+  background-color: var(--jade-bg-body);
+}

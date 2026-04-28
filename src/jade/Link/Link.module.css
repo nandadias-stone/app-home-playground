@@ -1,0 +1,37 @@
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--jade-space-50);
+  font-family: var(--jade-font-family);
+  font-weight: var(--jade-fw-semibold);
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.15s ease;
+}
+
+.link:hover {
+  opacity: 0.85;
+}
+
+.size-small {
+  font-size: var(--jade-fs-50);
+  line-height: var(--jade-lh-100);
+}
+
+.size-medium {
+  font-size: var(--jade-fs-75);
+  line-height: var(--jade-lh-150);
+  letter-spacing: -0.006em;
+}
+
+.variant-brand {
+  color: var(--jade-content-brand);
+}
+
+.variant-on-brand {
+  color: var(--jade-content-on-brand-high);
+}
+
+.variant-neutral {
+  color: var(--jade-content-high);
+}

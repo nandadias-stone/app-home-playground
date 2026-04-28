@@ -1,0 +1,40 @@
+.shape {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.size-small {
+  width: 32px;
+  height: 32px;
+}
+.size-medium {
+  width: 40px;
+  height: 40px;
+}
+.size-large {
+  width: 48px;
+  height: 48px;
+}
+
+.variant-positive-subtle {
+  background-color: var(--jade-bg-positive-subtle);
+  color: var(--jade-content-positive);
+}
+
+.variant-brand-subtle {
+  background-color: var(--jade-bg-brand-subtle);
+  color: var(--jade-content-brand);
+}
+
+.variant-neutral-subtle {
+  background-color: var(--jade-bg-neutral-subtle);
+  color: var(--jade-content-high);
+}
+
+.variant-warning-subtle {
+  background-color: var(--jade-bg-warning-subtle);
+  color: var(--jade-content-warning);
+}

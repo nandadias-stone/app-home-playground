@@ -1,0 +1,30 @@
+.scroller {
+  display: flex;
+  gap: var(--jade-space-150);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  margin: 0 calc(-1 * var(--jade-space-200));
+  padding: 0 var(--jade-space-200);
+  scrollbar-width: none;
+}
+
+.scroller::-webkit-scrollbar {
+  display: none;
+}
+
+.banner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--jade-space-100);
+  flex-shrink: 0;
+  width: 280px;
+  scroll-snap-align: start;
+}
+
+.title {
+  color: var(--jade-content-high);
+}
+
+.description {
+  color: var(--jade-content-medium);
+}

@@ -1,0 +1,18 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: var(--jade-app-max-width);
+  min-height: 100%;
+  margin: 0 auto;
+  background-color: var(--jade-bg-body);
+  position: relative;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--jade-space-150);
+  padding: var(--jade-space-200);
+  flex: 1;
+}

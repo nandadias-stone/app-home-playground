@@ -1,0 +1,195 @@
+/*
+ * Jade Design System — tokens replicados do Figma
+ * Fonte: variáveis Jade exportadas do file dqkSmDQNJ6BeObUGPVhdxV
+ * Referência interna: https://github.com/stone-payments/jade-design-tokens
+ */
+:root {
+  /* ============ Cores - Background ============ */
+  --jade-bg-body: #f1f3f5;
+  --jade-bg-surface: #ffffff;
+  --jade-bg-brand: #30a46c;
+  --jade-bg-brand-high: #195739;
+  --jade-bg-brand-subtle: rgba(18, 255, 5, 0.078);
+  --jade-bg-warning: #f76808;
+  --jade-bg-warning-subtle: rgba(255, 156, 0, 0.16);
+  --jade-bg-info: #3e63dd;
+  --jade-bg-info-subtle: rgba(1, 68, 255, 0.06);
+  --jade-bg-positive: #30a46c;
+  --jade-bg-positive-subtle: rgba(0, 164, 51, 0.098);
+  --jade-bg-neutral: #1c2024;
+  --jade-bg-neutral-subtle: rgba(0, 37, 73, 0.055);
+  --jade-bg-on-brand: rgba(255, 255, 255, 0.102);
+  --jade-bg-on-color: rgba(255, 255, 255, 0.102);
+
+  /* ============ Cores - Conteúdo (texto / ícone) ============ */
+  --jade-content-high: #2b323b;
+  --jade-content-medium: rgba(0, 14, 24, 0.59);
+  --jade-content-low: rgba(1, 30, 50, 0.243);
+  --jade-content-brand: rgba(0, 113, 63, 0.871);
+  --jade-content-warning: rgba(141, 53, 0, 0.98);
+  --jade-content-info: rgba(0, 37, 158, 0.796);
+  --jade-content-positive: rgba(0, 69, 36, 0.902);
+  --jade-content-on-brand-high: #fbfefc;
+  --jade-content-on-brand-medium: #f4fbf6;
+  --jade-content-on-brand-low: #adddc0;
+  --jade-content-on-color-high: #ffffff;
+  --jade-content-neutral: #767f8d;
+
+  /* ============ Cores - Borda ============ */
+  --jade-border-low: rgba(2, 28, 55, 0.075);
+  --jade-border-high: rgba(1, 30, 50, 0.243);
+  --jade-border-brand: rgba(0, 235, 51, 0.969);
+  --jade-border-warning-subtle: rgba(255, 129, 0, 0.49);
+
+  /* ============ Espaçamento ============ */
+  --jade-space-25: 2px;
+  --jade-space-50: 4px;
+  --jade-space-100: 8px;
+  --jade-space-150: 12px;
+  --jade-space-200: 16px;
+  --jade-space-250: 20px;
+  --jade-space-300: 24px;
+  --jade-space-400: 32px;
+  --jade-space-500: 40px;
+
+  /* ============ Tipografia ============ */
+  --jade-font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  --jade-fs-50: 12px;
+  --jade-fs-75: 14px;
+  --jade-fs-100: 16px;
+  --jade-fs-125: 18px;
+  --jade-fs-150: 20px;
+  --jade-fs-200: 24px;
+
+  --jade-lh-100: 16px;
+  --jade-lh-150: 20px;
+  --jade-lh-200: 24px;
+  --jade-lh-250: 28px;
+
+  --jade-fw-regular: 400;
+  --jade-fw-medium: 500;
+  --jade-fw-semibold: 600;
+  --jade-fw-bold: 700;
+
+  /* ============ Border radius ============ */
+  --jade-radius-xs: 4px;
+  --jade-radius-interactive: 8px;
+  --jade-radius-medium: 12px;
+  --jade-radius-container: 12px;
+  --jade-radius-large: 16px;
+  --jade-radius-pill: 500px;
+
+  /* ============ Sombras ============ */
+  --jade-shadow-small: 0 1.5px 1px 0 rgba(0, 0, 45, 0.09);
+  --jade-shadow-medium: 0 5px 20px 0 rgba(0, 0, 45, 0.09);
+  --jade-shadow-surface-01: 0 1px 1px 0 rgba(0, 0, 0, 0.06), 0 0 1px 0 rgba(0, 0, 0, 0.12);
+
+  /* ============ Layout ============ */
+  --jade-app-max-width: 414px;
+  --jade-tab-bar-height: 64px;
+  --jade-safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* ============ Helpers tipográficos ============ */
+.jade-heading-large {
+  font-family: var(--jade-font-family);
+  font-size: var(--jade-fs-200);
+  line-height: var(--jade-lh-250);
+  font-weight: var(--jade-fw-semibold);
+  letter-spacing: -0.019em;
+}
+
+.jade-heading-medium {
+  font-family: var(--jade-font-family);
+  font-size: var(--jade-fs-150);
+  line-height: var(--jade-lh-200);
+  font-weight: var(--jade-fw-semibold);
+  letter-spacing: -0.017em;
+}
+
+.jade-heading-small {
+  font-family: var(--jade-font-family);
+  font-size: var(--jade-fs-125);
+  line-height: var(--jade-lh-150);
+  font-weight: var(--jade-fw-semibold);
+  letter-spacing: -0.014em;
+}
+
+.jade-heading-xsmall {
+  font-family: var(--jade-font-family);
+  font-size: var(--jade-fs-100);
+  line-height: var(--jade-lh-150);
+  font-weight: var(--jade-fw-semibold);
+  letter-spacing: -0.011em;
+}
+
+.jade-text-large-regular {
+  font-family: var(--jade-font-family);
+  font-size: var(--jade-fs-100);
+  line-height: var(--jade-lh-200);
+  font-weight: var(--jade-fw-regular);
+  letter-spacing: -0.011em;
+}
+
+.jade-text-large-semibold {
+  font-family: var(--jade-font-family);
+  font-size: var(--jade-fs-100);
+  line-height: var(--jade-lh-200);
+  font-weight: var(--jade-fw-semibold);
+  letter-spacing: -0.011em;
+}
+
+.jade-text-medium-regular {
+  font-family: var(--jade-font-family);
+  font-size: var(--jade-fs-75);
+  line-height: var(--jade-lh-150);
+  font-weight: var(--jade-fw-regular);
+  letter-spacing: -0.006em;
+}
+
+.jade-text-medium-medium {
+  font-family: var(--jade-font-family);
+  font-size: var(--jade-fs-75);
+  line-height: var(--jade-lh-150);
+  font-weight: var(--jade-fw-medium);
+  letter-spacing: -0.006em;
+}
+
+.jade-text-medium-semibold {
+  font-family: var(--jade-font-family);
+  font-size: var(--jade-fs-75);
+  line-height: var(--jade-lh-150);
+  font-weight: var(--jade-fw-semibold);
+  letter-spacing: -0.006em;
+}
+
+.jade-text-small-regular {
+  font-family: var(--jade-font-family);
+  font-size: var(--jade-fs-50);
+  line-height: var(--jade-lh-100);
+  font-weight: var(--jade-fw-regular);
+}
+
+.jade-text-small-medium {
+  font-family: var(--jade-font-family);
+  font-size: var(--jade-fs-50);
+  line-height: var(--jade-lh-100);
+  font-weight: var(--jade-fw-medium);
+}
+
+.jade-text-small-semibold {
+  font-family: var(--jade-font-family);
+  font-size: var(--jade-fs-50);
+  line-height: var(--jade-lh-100);
+  font-weight: var(--jade-fw-semibold);
+}
+
+.jade-text-small-overline {
+  font-family: var(--jade-font-family);
+  font-size: var(--jade-fs-50);
+  line-height: var(--jade-lh-100);
+  font-weight: var(--jade-fw-semibold);
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+}

@@ -1,0 +1,52 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--jade-space-100);
+}
+
+.cell {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--jade-space-100);
+  padding: var(--jade-space-200) var(--jade-space-100);
+  background-color: var(--jade-bg-surface);
+  border-radius: var(--jade-radius-medium);
+  border: 0;
+  cursor: pointer;
+  min-height: 100px;
+  transition: transform 0.05s ease;
+}
+
+.cell:active {
+  transform: scale(0.98);
+}
+
+.iconWrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.label {
+  text-align: center;
+  color: var(--jade-content-high);
+  letter-spacing: -0.006em;
+}
+
+.badge {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--jade-bg-info);
+  color: #fff;
+  font-size: 10px;
+  font-weight: var(--jade-fw-semibold);
+  line-height: 1;
+  padding: 2px 6px;
+  border-radius: var(--jade-radius-pill);
+  white-space: nowrap;
+}

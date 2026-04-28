@@ -1,0 +1,1 @@
+export { CardCartaoFatura } from './CardCartaoFatura';

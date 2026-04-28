@@ -1,0 +1,1 @@
+export { BannerAutocredenciamento } from './BannerAutocredenciamento';

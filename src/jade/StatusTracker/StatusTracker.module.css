@@ -1,0 +1,56 @@
+.tracker {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.stepWrap {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.stepWrap:last-child {
+  flex: 0;
+}
+
+.step {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 2px solid var(--jade-border-low);
+  background-color: var(--jade-bg-surface);
+  position: relative;
+}
+
+.completed {
+  background-color: var(--jade-bg-positive);
+  border-color: var(--jade-bg-positive);
+}
+
+.current {
+  border-color: var(--jade-bg-positive);
+  background-color: var(--jade-bg-surface);
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--jade-bg-positive);
+}
+
+.connector {
+  flex: 1;
+  height: 2px;
+  background-color: var(--jade-border-low);
+  min-width: 12px;
+}
+
+.connectorActive {
+  background-color: var(--jade-bg-positive);
+}

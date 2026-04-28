@@ -1,0 +1,13 @@
+.title {
+  color: var(--jade-content-medium);
+  margin-bottom: var(--jade-space-150);
+}
+
+.tracker {
+  margin-bottom: var(--jade-space-150);
+}
+
+.status {
+  color: var(--jade-content-positive);
+  margin-bottom: var(--jade-space-200);
+}

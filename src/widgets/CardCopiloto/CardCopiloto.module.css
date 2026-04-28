@@ -1,0 +1,49 @@
+.card {
+  display: flex;
+  align-items: center;
+  gap: var(--jade-space-150);
+  padding: var(--jade-space-150) var(--jade-space-200);
+  width: 100%;
+  border-radius: var(--jade-radius-medium);
+  background:
+    linear-gradient(
+      135deg,
+      #0f3a23 0%,
+      #195739 35%,
+      #1f6a44 65%,
+      #0d3220 100%
+    );
+  color: var(--jade-content-on-brand-high);
+  cursor: pointer;
+  border: 0;
+  transition: transform 0.05s ease;
+  text-align: left;
+}
+
+.card:active {
+  transform: scale(0.99);
+}
+
+.markWrap {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  flex: 1;
+  color: var(--jade-content-on-brand-high);
+  letter-spacing: -0.011em;
+}
+
+.chevron {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.12);
+}

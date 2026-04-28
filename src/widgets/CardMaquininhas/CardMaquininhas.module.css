@@ -1,0 +1,16 @@
+.card {
+  display: flex;
+  align-items: center;
+  gap: var(--jade-space-150);
+  padding: var(--jade-space-100) var(--jade-space-150);
+}
+
+.label {
+  flex: 1;
+  color: var(--jade-content-high);
+  font-weight: var(--jade-fw-regular);
+}
+
+.label strong {
+  font-weight: var(--jade-fw-semibold);
+}

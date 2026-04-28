@@ -1,0 +1,78 @@
+.body {
+  display: flex;
+  flex-direction: column;
+  padding: var(--jade-space-200) var(--jade-space-200) 0;
+  gap: var(--jade-space-150);
+}
+
+.row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--jade-space-100);
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.saldoBlock,
+.reservaBlock {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--jade-space-100);
+  background: transparent;
+  border: 0;
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
+  width: 100%;
+}
+
+.label {
+  color: var(--jade-content-medium);
+}
+
+.amount {
+  color: var(--jade-content-high);
+  margin-bottom: var(--jade-space-50);
+}
+
+.amountSmall {
+  color: var(--jade-content-high);
+}
+
+.metaRow {
+  display: flex;
+  align-items: center;
+  gap: var(--jade-space-50);
+}
+
+.meta {
+  color: var(--jade-content-medium);
+}
+
+.limiteBlock {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--jade-space-100);
+  padding-bottom: var(--jade-space-50);
+}
+
+.limiteTitle {
+  color: var(--jade-content-high);
+}
+
+.shortcuts {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--jade-space-100);
+  padding: var(--jade-space-200);
+  border-top: 1px solid var(--jade-border-low);
+  margin-top: var(--jade-space-150);
+}

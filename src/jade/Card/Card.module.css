@@ -1,0 +1,27 @@
+.card {
+  border-radius: var(--jade-radius-container);
+  background-color: var(--jade-bg-surface);
+}
+
+.variant-surface {
+  background-color: var(--jade-bg-surface);
+  box-shadow: var(--jade-shadow-surface-01);
+}
+
+.variant-outlined {
+  background-color: var(--jade-bg-surface);
+  border: 1px solid var(--jade-border-low);
+}
+
+.padding-none {
+  padding: 0;
+}
+.padding-small {
+  padding: var(--jade-space-150);
+}
+.padding-medium {
+  padding: var(--jade-space-200);
+}
+.padding-large {
+  padding: var(--jade-space-250);
+}

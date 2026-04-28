@@ -1,0 +1,39 @@
+.banner {
+  display: flex;
+  align-items: stretch;
+  gap: var(--jade-space-100);
+  background-color: var(--jade-bg-surface);
+  border-radius: var(--jade-radius-medium);
+  border: 1px solid var(--jade-border-low);
+  cursor: pointer;
+  padding: var(--jade-space-200);
+  text-align: left;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--jade-space-100);
+  min-width: 0;
+}
+
+.title {
+  color: var(--jade-content-high);
+}
+
+.description {
+  color: var(--jade-content-medium);
+}
+
+.illustration {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: calc(-1 * var(--jade-space-100)) calc(-1 * var(--jade-space-200))
+    calc(-1 * var(--jade-space-100)) 0;
+}

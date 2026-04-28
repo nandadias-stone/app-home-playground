@@ -1,0 +1,1 @@
+export { AlertaDispositivo } from './AlertaDispositivo';

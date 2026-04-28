@@ -1,0 +1,1 @@
+export { CardMeuAgente } from './CardMeuAgente';

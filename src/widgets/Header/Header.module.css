@@ -1,0 +1,50 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--jade-space-100);
+  padding: var(--jade-space-200) var(--jade-space-200) var(--jade-space-200) var(--jade-space-250);
+  padding-top: calc(var(--jade-space-200) + max(env(safe-area-inset-top, 0px), 28px));
+  background-color: var(--jade-bg-brand-high);
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.merchantInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  flex: 1;
+  min-width: 0;
+  padding: 0;
+}
+
+.nameRow {
+  display: flex;
+  align-items: center;
+  gap: var(--jade-space-50);
+  color: var(--jade-content-on-brand-high);
+}
+
+.name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 197px;
+}
+
+.cnpj {
+  color: var(--jade-content-on-brand-medium);
+}
+
+.actions {
+  display: flex;
+  gap: var(--jade-space-100);
+  flex-shrink: 0;
+}

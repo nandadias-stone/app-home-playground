@@ -1,0 +1,7 @@
+.divider {
+  border: 0;
+  height: 1px;
+  background-color: var(--jade-border-low);
+  margin: 0;
+  width: 100%;
+}
