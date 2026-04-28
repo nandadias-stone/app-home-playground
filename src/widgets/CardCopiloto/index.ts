@@ -1,1 +1,0 @@
-export { CardCopiloto } from './CardCopiloto';

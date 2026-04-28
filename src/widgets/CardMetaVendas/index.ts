@@ -1,1 +1,0 @@
-export { CardMetaVendas } from './CardMetaVendas';

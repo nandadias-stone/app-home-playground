@@ -1,1 +1,0 @@
-export { ToggleTonFast } from './ToggleTonFast';

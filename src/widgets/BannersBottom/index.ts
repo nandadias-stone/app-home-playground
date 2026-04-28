@@ -1,1 +1,0 @@
-export { BannersBottom } from './BannersBottom';

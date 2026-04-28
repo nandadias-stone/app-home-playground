@@ -1,1 +1,0 @@
-export { AlertaEquipe } from './AlertaEquipe';

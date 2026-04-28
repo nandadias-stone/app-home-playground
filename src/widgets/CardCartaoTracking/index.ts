@@ -1,1 +1,0 @@
-export { CardCartaoTracking } from './CardCartaoTracking';

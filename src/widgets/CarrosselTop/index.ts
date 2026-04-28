@@ -1,1 +1,0 @@
-export { CarrosselTop } from './CarrosselTop';

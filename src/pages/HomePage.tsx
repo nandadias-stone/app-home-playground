@@ -1,48 +1,29 @@
 import { Header } from '@/widgets/Header';
-import { Onboarding } from '@/widgets/Onboarding';
-import { AlertaEquipe } from '@/widgets/AlertaEquipe';
-import { AlertaDispositivo } from '@/widgets/AlertaDispositivo';
-import { CardCopiloto } from '@/widgets/CardCopiloto';
-import { CardSaldo } from '@/widgets/CardSaldo';
-import { CarrosselTop } from '@/widgets/CarrosselTop';
-import { BannerCapitalGiro } from '@/widgets/BannerCapitalGiro';
-import { BannerAutocredenciamento } from '@/widgets/BannerAutocredenciamento';
-import { CardRecebimentos } from '@/widgets/CardRecebimentos';
-import { ToggleTonFast } from '@/widgets/ToggleTonFast';
-import { CardVendas } from '@/widgets/CardVendas';
-import { CardCartaoTracking } from '@/widgets/CardCartaoTracking';
-import { CardCartaoFatura } from '@/widgets/CardCartaoFatura';
-import { CardMetaVendas } from '@/widgets/CardMetaVendas';
-import { CardMaquininhas } from '@/widgets/CardMaquininhas';
-import { GridAtalhos } from '@/widgets/GridAtalhos';
-import { BannersBottom } from '@/widgets/BannersBottom';
-import { CardMeuAgente } from '@/widgets/CardMeuAgente';
 import { TabBar } from '@/widgets/TabBar';
+import { usePlaygroundOptional, WIDGET_REGISTRY, DEFAULT_ORDER } from '@/playground';
 import styles from './HomePage.module.css';
 
 export function HomePage() {
+  const playground = usePlaygroundOptional();
+
+  // Sem provider (rota /): ordem default, todos visíveis, version v1
+  const widgets = playground
+    ? playground.config.widgets.filter((w) => w.enabled)
+    : DEFAULT_ORDER.map((id) => ({
+        id,
+        enabled: true,
+        version: WIDGET_REGISTRY[id].versions[0] ?? 'v1',
+      }));
+
   return (
     <div className={styles.app}>
       <Header />
       <main className={styles.main}>
-        <Onboarding />
-        <AlertaEquipe />
-        <AlertaDispositivo />
-        <CardCopiloto />
-        <CardSaldo />
-        <CarrosselTop />
-        <BannerCapitalGiro />
-        <BannerAutocredenciamento />
-        <CardRecebimentos />
-        <ToggleTonFast />
-        <CardVendas />
-        <CardCartaoTracking />
-        <CardCartaoFatura />
-        <CardMetaVendas />
-        <CardMaquininhas />
-        <GridAtalhos />
-        <BannersBottom />
-        <CardMeuAgente />
+        {widgets.map((w) => {
+          const entry = WIDGET_REGISTRY[w.id];
+          const Comp = entry.component;
+          return <Comp key={w.id} version={w.version} />;
+        })}
       </main>
       <TabBar />
     </div>

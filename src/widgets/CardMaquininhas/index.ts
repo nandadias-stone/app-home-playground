@@ -1,1 +1,0 @@
-export { CardMaquininhas } from './CardMaquininhas';
