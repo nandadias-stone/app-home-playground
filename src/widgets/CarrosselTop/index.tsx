@@ -1,15 +1,12 @@
-import { type ComponentProps } from 'react';
-import { CarrosselTopV1 } from './v1';
+import { type ComponentType } from 'react';
+import { createVersionedWidget } from '../_helpers/createVersionedWidget';
 
-export const CarrosselTopVersions = {
-  v1: CarrosselTopV1,
-} as const;
+const modules = import.meta.glob<Record<string, ComponentType<any>>>('./v*.tsx', {
+  eager: true,
+});
 
-export type CarrosselTopVersion = keyof typeof CarrosselTopVersions;
+const widget = createVersionedWidget(modules);
 
-type Props = ComponentProps<typeof CarrosselTopV1> & { version?: CarrosselTopVersion };
-
-export function CarrosselTop({ version = 'v1', ...props }: Props) {
-  const Comp = CarrosselTopVersions[version] ?? CarrosselTopV1;
-  return <Comp {...props} />;
-}
+export const CarrosselTop = widget.component;
+export const CarrosselTopVersions = widget.versions;
+export type CarrosselTopVersion = string;

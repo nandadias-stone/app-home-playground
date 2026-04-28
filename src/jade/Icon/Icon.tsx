@@ -18,6 +18,7 @@ type IconProps = {
 const ASSET_ALIASES: Partial<Record<IconName, string>> = {
   'caret-down': 'chevron-down',
   'chevron-down': 'chevron-down',
+  'chevron-right': 'chevron-right',
   user: 'user',
   lock: 'lock',
   'lock-fill': 'lock',

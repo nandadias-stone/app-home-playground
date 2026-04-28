@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--jade-space-100);
-  padding: var(--jade-space-200);
+  padding: var(--jade-space-250);
   background: transparent;
   border: 0;
   width: 100%;
@@ -40,7 +40,7 @@
 .dias {
   display: flex;
   gap: var(--jade-space-100);
-  padding: 0 var(--jade-space-200) var(--jade-space-200);
+  padding: 0 var(--jade-space-250) var(--jade-space-250);
   overflow-x: auto;
   scrollbar-width: none;
 }
@@ -117,7 +117,7 @@
   display: flex;
   align-items: center;
   gap: var(--jade-space-150);
-  padding: var(--jade-space-200);
+  padding: var(--jade-space-250);
   width: 100%;
   background: transparent;
   border: 0;

@@ -1,15 +1,12 @@
-import { type ComponentProps } from 'react';
-import { OnboardingV1 } from './v1';
+import { type ComponentType } from 'react';
+import { createVersionedWidget } from '../_helpers/createVersionedWidget';
 
-export const OnboardingVersions = {
-  v1: OnboardingV1,
-} as const;
+const modules = import.meta.glob<Record<string, ComponentType<any>>>('./v*.tsx', {
+  eager: true,
+});
 
-export type OnboardingVersion = keyof typeof OnboardingVersions;
+const widget = createVersionedWidget(modules);
 
-type Props = ComponentProps<typeof OnboardingV1> & { version?: OnboardingVersion };
-
-export function Onboarding({ version = 'v1', ...props }: Props) {
-  const Comp = OnboardingVersions[version] ?? OnboardingV1;
-  return <Comp {...props} />;
-}
+export const Onboarding = widget.component;
+export const OnboardingVersions = widget.versions;
+export type OnboardingVersion = string;

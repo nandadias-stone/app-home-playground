@@ -1,15 +1,12 @@
-import { type ComponentProps } from 'react';
-import { CardCartaoTrackingV1 } from './v1';
+import { type ComponentType } from 'react';
+import { createVersionedWidget } from '../_helpers/createVersionedWidget';
 
-export const CardCartaoTrackingVersions = {
-  v1: CardCartaoTrackingV1,
-} as const;
+const modules = import.meta.glob<Record<string, ComponentType<any>>>('./v*.tsx', {
+  eager: true,
+});
 
-export type CardCartaoTrackingVersion = keyof typeof CardCartaoTrackingVersions;
+const widget = createVersionedWidget(modules);
 
-type Props = ComponentProps<typeof CardCartaoTrackingV1> & { version?: CardCartaoTrackingVersion };
-
-export function CardCartaoTracking({ version = 'v1', ...props }: Props) {
-  const Comp = CardCartaoTrackingVersions[version] ?? CardCartaoTrackingV1;
-  return <Comp {...props} />;
-}
+export const CardCartaoTracking = widget.component;
+export const CardCartaoTrackingVersions = widget.versions;
+export type CardCartaoTrackingVersion = string;

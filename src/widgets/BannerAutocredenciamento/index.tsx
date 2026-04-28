@@ -1,15 +1,12 @@
-import { type ComponentProps } from 'react';
-import { BannerAutocredenciamentoV1 } from './v1';
+import { type ComponentType } from 'react';
+import { createVersionedWidget } from '../_helpers/createVersionedWidget';
 
-export const BannerAutocredenciamentoVersions = {
-  v1: BannerAutocredenciamentoV1,
-} as const;
+const modules = import.meta.glob<Record<string, ComponentType<any>>>('./v*.tsx', {
+  eager: true,
+});
 
-export type BannerAutocredenciamentoVersion = keyof typeof BannerAutocredenciamentoVersions;
+const widget = createVersionedWidget(modules);
 
-type Props = ComponentProps<typeof BannerAutocredenciamentoV1> & { version?: BannerAutocredenciamentoVersion };
-
-export function BannerAutocredenciamento({ version = 'v1', ...props }: Props) {
-  const Comp = BannerAutocredenciamentoVersions[version] ?? BannerAutocredenciamentoV1;
-  return <Comp {...props} />;
-}
+export const BannerAutocredenciamento = widget.component;
+export const BannerAutocredenciamentoVersions = widget.versions;
+export type BannerAutocredenciamentoVersion = string;

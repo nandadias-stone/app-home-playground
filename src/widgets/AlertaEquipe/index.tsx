@@ -1,15 +1,12 @@
-import { type ComponentProps } from 'react';
-import { AlertaEquipeV1 } from './v1';
+import { type ComponentType } from 'react';
+import { createVersionedWidget } from '../_helpers/createVersionedWidget';
 
-export const AlertaEquipeVersions = {
-  v1: AlertaEquipeV1,
-} as const;
+const modules = import.meta.glob<Record<string, ComponentType<any>>>('./v*.tsx', {
+  eager: true,
+});
 
-export type AlertaEquipeVersion = keyof typeof AlertaEquipeVersions;
+const widget = createVersionedWidget(modules);
 
-type Props = ComponentProps<typeof AlertaEquipeV1> & { version?: AlertaEquipeVersion };
-
-export function AlertaEquipe({ version = 'v1', ...props }: Props) {
-  const Comp = AlertaEquipeVersions[version] ?? AlertaEquipeV1;
-  return <Comp {...props} />;
-}
+export const AlertaEquipe = widget.component;
+export const AlertaEquipeVersions = widget.versions;
+export type AlertaEquipeVersion = string;

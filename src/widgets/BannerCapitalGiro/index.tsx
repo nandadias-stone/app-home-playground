@@ -1,15 +1,12 @@
-import { type ComponentProps } from 'react';
-import { BannerCapitalGiroV1 } from './v1';
+import { type ComponentType } from 'react';
+import { createVersionedWidget } from '../_helpers/createVersionedWidget';
 
-export const BannerCapitalGiroVersions = {
-  v1: BannerCapitalGiroV1,
-} as const;
+const modules = import.meta.glob<Record<string, ComponentType<any>>>('./v*.tsx', {
+  eager: true,
+});
 
-export type BannerCapitalGiroVersion = keyof typeof BannerCapitalGiroVersions;
+const widget = createVersionedWidget(modules);
 
-type Props = ComponentProps<typeof BannerCapitalGiroV1> & { version?: BannerCapitalGiroVersion };
-
-export function BannerCapitalGiro({ version = 'v1', ...props }: Props) {
-  const Comp = BannerCapitalGiroVersions[version] ?? BannerCapitalGiroV1;
-  return <Comp {...props} />;
-}
+export const BannerCapitalGiro = widget.component;
+export const BannerCapitalGiroVersions = widget.versions;
+export type BannerCapitalGiroVersion = string;

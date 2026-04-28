@@ -1,0 +1,53 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--jade-bg-surface);
+  border: 1px solid var(--jade-border-low);
+  border-radius: var(--jade-radius-medium);
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--jade-space-100);
+  padding: var(--jade-space-150) var(--jade-space-200);
+  border-bottom: 1px solid var(--jade-border-low);
+  background-color: var(--jade-bg-surface);
+}
+
+.label {
+  font-family: var(--jade-font-family);
+  font-size: var(--jade-fs-100);
+  line-height: var(--jade-lh-200);
+  font-weight: var(--jade-fw-semibold);
+  color: var(--jade-content-high);
+  font-variant-numeric: tabular-nums;
+}
+
+.switchLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--jade-space-100);
+  cursor: pointer;
+}
+
+.switchText {
+  color: var(--jade-content-medium);
+}
+
+.preview {
+  background-color: var(--jade-bg-body);
+  padding: var(--jade-space-200);
+  min-height: 200px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.frame {
+  width: 100%;
+  max-width: 360px;
+}

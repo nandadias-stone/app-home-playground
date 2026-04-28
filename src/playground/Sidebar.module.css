@@ -36,6 +36,19 @@
   margin: 2px 0 0;
 }
 
+.labLink {
+  display: inline-block;
+  margin-top: var(--jade-space-100);
+  font-family: var(--jade-font-family);
+  font-size: var(--jade-fs-50);
+  font-weight: var(--jade-fw-semibold);
+  color: var(--jade-content-brand);
+}
+
+.labLink:hover {
+  text-decoration: underline;
+}
+
 .closeButton {
   display: inline-flex;
   align-items: center;

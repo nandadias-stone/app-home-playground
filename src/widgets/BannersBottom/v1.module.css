@@ -4,7 +4,7 @@
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   margin: 0 calc(-1 * var(--jade-space-200));
-  padding: 0 var(--jade-space-200);
+  padding: 0 var(--jade-space-250);
   scrollbar-width: none;
 }
 

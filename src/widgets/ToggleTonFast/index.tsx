@@ -1,15 +1,12 @@
-import { type ComponentProps } from 'react';
-import { ToggleTonFastV1 } from './v1';
+import { type ComponentType } from 'react';
+import { createVersionedWidget } from '../_helpers/createVersionedWidget';
 
-export const ToggleTonFastVersions = {
-  v1: ToggleTonFastV1,
-} as const;
+const modules = import.meta.glob<Record<string, ComponentType<any>>>('./v*.tsx', {
+  eager: true,
+});
 
-export type ToggleTonFastVersion = keyof typeof ToggleTonFastVersions;
+const widget = createVersionedWidget(modules);
 
-type Props = ComponentProps<typeof ToggleTonFastV1> & { version?: ToggleTonFastVersion };
-
-export function ToggleTonFast({ version = 'v1', ...props }: Props) {
-  const Comp = ToggleTonFastVersions[version] ?? ToggleTonFastV1;
-  return <Comp {...props} />;
-}
+export const ToggleTonFast = widget.component;
+export const ToggleTonFastVersions = widget.versions;
+export type ToggleTonFastVersion = string;

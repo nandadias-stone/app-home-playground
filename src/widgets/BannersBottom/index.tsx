@@ -1,15 +1,12 @@
-import { type ComponentProps } from 'react';
-import { BannersBottomV1 } from './v1';
+import { type ComponentType } from 'react';
+import { createVersionedWidget } from '../_helpers/createVersionedWidget';
 
-export const BannersBottomVersions = {
-  v1: BannersBottomV1,
-} as const;
+const modules = import.meta.glob<Record<string, ComponentType<any>>>('./v*.tsx', {
+  eager: true,
+});
 
-export type BannersBottomVersion = keyof typeof BannersBottomVersions;
+const widget = createVersionedWidget(modules);
 
-type Props = ComponentProps<typeof BannersBottomV1> & { version?: BannersBottomVersion };
-
-export function BannersBottom({ version = 'v1', ...props }: Props) {
-  const Comp = BannersBottomVersions[version] ?? BannersBottomV1;
-  return <Comp {...props} />;
-}
+export const BannersBottom = widget.component;
+export const BannersBottomVersions = widget.versions;
+export type BannersBottomVersion = string;

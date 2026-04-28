@@ -1,6 +1,7 @@
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { Switch } from '@/jade';
+import { usePromotionOptional } from '@/lab';
 import { WIDGET_REGISTRY, type WidgetId } from './widget-registry';
 import type { WidgetConfig } from './types';
 import styles from './SortableWidgetItem.module.css';
@@ -17,7 +18,11 @@ export function SortableWidgetItem({ widget, onToggle, onVersionChange }: Props)
   });
 
   const entry = WIDGET_REGISTRY[widget.id];
-  const hasMultipleVersions = entry.versions.length > 1;
+  const promotion = usePromotionOptional();
+  const availableVersions = promotion
+    ? entry.versions.filter((v) => promotion.isPromoted(widget.id, v))
+    : entry.versions;
+  const hasMultipleVersions = availableVersions.length > 1;
 
   const style: React.CSSProperties = {
     transform: CSS.Transform.toString(transform),
@@ -53,7 +58,7 @@ export function SortableWidgetItem({ widget, onToggle, onVersionChange }: Props)
             value={widget.version}
             onChange={(e) => onVersionChange(widget.id, e.target.value)}
           >
-            {entry.versions.map((v) => (
+            {availableVersions.map((v) => (
               <option key={v} value={v}>
                 {v}
               </option>

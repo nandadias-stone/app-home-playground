@@ -1,15 +1,12 @@
-import { type ComponentProps } from 'react';
-import { CardMetaVendasV1 } from './v1';
+import { type ComponentType } from 'react';
+import { createVersionedWidget } from '../_helpers/createVersionedWidget';
 
-export const CardMetaVendasVersions = {
-  v1: CardMetaVendasV1,
-} as const;
+const modules = import.meta.glob<Record<string, ComponentType<any>>>('./v*.tsx', {
+  eager: true,
+});
 
-export type CardMetaVendasVersion = keyof typeof CardMetaVendasVersions;
+const widget = createVersionedWidget(modules);
 
-type Props = ComponentProps<typeof CardMetaVendasV1> & { version?: CardMetaVendasVersion };
-
-export function CardMetaVendas({ version = 'v1', ...props }: Props) {
-  const Comp = CardMetaVendasVersions[version] ?? CardMetaVendasV1;
-  return <Comp {...props} />;
-}
+export const CardMetaVendas = widget.component;
+export const CardMetaVendasVersions = widget.versions;
+export type CardMetaVendasVersion = string;

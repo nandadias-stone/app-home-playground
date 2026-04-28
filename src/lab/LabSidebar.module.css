@@ -1,0 +1,113 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+  height: 100vh;
+  background-color: var(--jade-bg-surface);
+  border-right: 1px solid var(--jade-border-low);
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+}
+
+.header {
+  padding: var(--jade-space-200);
+  border-bottom: 1px solid var(--jade-border-low);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.title {
+  font-family: var(--jade-font-family);
+  font-size: var(--jade-fs-100);
+  line-height: var(--jade-lh-200);
+  font-weight: var(--jade-fw-semibold);
+  color: var(--jade-content-high);
+  margin: 0;
+}
+
+.subtitle {
+  font-family: var(--jade-font-family);
+  font-size: var(--jade-fs-50);
+  line-height: var(--jade-lh-100);
+  color: var(--jade-content-medium);
+  margin: 0;
+}
+
+.backLink {
+  font-family: var(--jade-font-family);
+  font-size: var(--jade-fs-50);
+  font-weight: var(--jade-fw-medium);
+  color: var(--jade-content-brand);
+  margin-top: var(--jade-space-100);
+  width: fit-content;
+}
+
+.backLink:hover {
+  text-decoration: underline;
+}
+
+.list {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--jade-space-100);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--jade-space-100);
+  padding: var(--jade-space-100) var(--jade-space-150);
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  border-radius: var(--jade-radius-interactive);
+  text-align: left;
+}
+
+.item:hover {
+  background-color: var(--jade-bg-neutral-subtle);
+}
+
+.item.active {
+  background-color: var(--jade-bg-positive-subtle);
+}
+
+.label {
+  font-family: var(--jade-font-family);
+  font-size: var(--jade-fs-75);
+  line-height: var(--jade-lh-150);
+  font-weight: var(--jade-fw-medium);
+  color: var(--jade-content-high);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.item.active .label {
+  color: var(--jade-content-positive);
+  font-weight: var(--jade-fw-semibold);
+}
+
+.badge {
+  font-family: var(--jade-font-family);
+  font-size: 11px;
+  font-weight: var(--jade-fw-medium);
+  color: var(--jade-content-medium);
+  font-variant-numeric: tabular-nums;
+  background-color: var(--jade-bg-neutral-subtle);
+  padding: 2px 6px;
+  border-radius: var(--jade-radius-pill);
+  flex-shrink: 0;
+}
+
+.item.active .badge {
+  background-color: var(--jade-bg-surface);
+  color: var(--jade-content-positive);
+}

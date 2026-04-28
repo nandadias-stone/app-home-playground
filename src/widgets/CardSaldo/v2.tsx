@@ -1,6 +1,6 @@
 import { Card, Icon, Link, ShortcutButton } from '@/jade';
 import { formatBRL } from '@/utils/format';
-import styles from './v1.module.css';
+import styles from './v2.module.css';
 
 type CardSaldoProps = {
   saldo?: number;
@@ -15,13 +15,13 @@ type CardSaldoProps = {
   onVender?: () => void;
 };
 
-export function CardSaldoV1({
-  saldo = 5000,
+export function CardSaldoV2({
+  saldo = 12345,
   agendados = 0,
   bloqueados = 0,
   reserva = 0,
   limiteAtivo = true,
-  limiteRetiravel = 5000,
+  limiteRetiravel = 8000,
   onPix,
   onTransferir,
   onPagar,

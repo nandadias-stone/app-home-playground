@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   gap: var(--jade-space-100);
-  padding: var(--jade-space-150) var(--jade-space-200);
+  padding: var(--jade-space-150) var(--jade-space-250);
 }
 
 .headerLabel {
@@ -18,7 +18,7 @@
   display: flex;
   align-items: center;
   gap: var(--jade-space-100);
-  padding: var(--jade-space-150) var(--jade-space-200);
+  padding: var(--jade-space-150) var(--jade-space-250);
   color: var(--jade-content-high);
   border-top: 1px solid var(--jade-border-low);
 }
@@ -37,7 +37,7 @@
   display: flex;
   align-items: center;
   gap: var(--jade-space-150);
-  padding: var(--jade-space-150) var(--jade-space-200);
+  padding: var(--jade-space-150) var(--jade-space-250);
 }
 
 .task + .task {

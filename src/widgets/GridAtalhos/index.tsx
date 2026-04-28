@@ -1,15 +1,12 @@
-import { type ComponentProps } from 'react';
-import { GridAtalhosV1 } from './v1';
+import { type ComponentType } from 'react';
+import { createVersionedWidget } from '../_helpers/createVersionedWidget';
 
-export const GridAtalhosVersions = {
-  v1: GridAtalhosV1,
-} as const;
+const modules = import.meta.glob<Record<string, ComponentType<any>>>('./v*.tsx', {
+  eager: true,
+});
 
-export type GridAtalhosVersion = keyof typeof GridAtalhosVersions;
+const widget = createVersionedWidget(modules);
 
-type Props = ComponentProps<typeof GridAtalhosV1> & { version?: GridAtalhosVersion };
-
-export function GridAtalhos({ version = 'v1', ...props }: Props) {
-  const Comp = GridAtalhosVersions[version] ?? GridAtalhosV1;
-  return <Comp {...props} />;
-}
+export const GridAtalhos = widget.component;
+export const GridAtalhosVersions = widget.versions;
+export type GridAtalhosVersion = string;

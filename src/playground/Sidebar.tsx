@@ -32,6 +32,9 @@ export function Sidebar({ open = true, onRequestClose }: SidebarProps) {
           <p className={styles.subtitle}>
             {enabledCount} de {config.widgets.length} widgets visíveis
           </p>
+          <a href="/lab" className={styles.labLink}>
+            Lab de versões →
+          </a>
         </div>
         {onRequestClose && (
           <button
