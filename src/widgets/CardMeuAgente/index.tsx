@@ -10,3 +10,8 @@ const widget = createVersionedWidget(modules);
 export const CardMeuAgente = widget.component;
 export const CardMeuAgenteVersions = widget.versions;
 export type CardMeuAgenteVersion = string;
+
+export const CardMeuAgenteStates = [
+  { id: 'fixo', label: 'Fixo' },
+  { id: 'flutuante', label: 'Flutuante' },
+] as const;

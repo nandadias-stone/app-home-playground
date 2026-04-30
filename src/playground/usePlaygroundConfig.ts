@@ -7,11 +7,16 @@ const STATE_KEY = 'playground.config';
 
 function buildDefaultConfig(): PlaygroundConfig {
   return {
-    widgets: DEFAULT_ORDER.map((id) => ({
-      id,
-      enabled: true,
-      version: WIDGET_REGISTRY[id].versions[0] ?? 'v1',
-    })),
+    widgets: DEFAULT_ORDER.map((id) => {
+      const entry = WIDGET_REGISTRY[id];
+      const states = entry.states ?? [];
+      return {
+        id,
+        enabled: true,
+        version: entry.versions[0] ?? 'v1',
+        ...(states.length > 0 ? { state: states[0].id } : {}),
+      };
+    }),
   };
 }
 
@@ -36,19 +41,32 @@ function sanitize(raw: unknown, fallback?: PlaygroundConfig): PlaygroundConfig {
       ? (item as WidgetConfig).version
       : entry.versions[0];
 
+    const states = entry.states ?? [];
+    const incomingState = (item as WidgetConfig).state;
+    const state =
+      states.length === 0
+        ? undefined
+        : states.some((s) => s.id === incomingState)
+          ? incomingState
+          : states[0].id;
+
     valid.push({
       id,
       enabled: Boolean((item as WidgetConfig).enabled),
       version,
+      ...(state !== undefined ? { state } : {}),
     });
   }
 
   for (const id of DEFAULT_ORDER) {
     if (!seen.has(id)) {
+      const entry = WIDGET_REGISTRY[id];
+      const states = entry.states ?? [];
       valid.push({
         id,
         enabled: true,
-        version: WIDGET_REGISTRY[id].versions[0] ?? 'v1',
+        version: entry.versions[0] ?? 'v1',
+        ...(states.length > 0 ? { state: states[0].id } : {}),
       });
     }
   }
@@ -60,6 +78,7 @@ export type PlaygroundActions = {
   config: PlaygroundConfig;
   toggleWidget: (id: WidgetId) => void;
   setVersion: (id: WidgetId, version: string) => void;
+  setState: (id: WidgetId, state: string) => void;
   reorder: (fromIndex: number, toIndex: number) => void;
   reset: () => void;
   replaceConfig: (next: PlaygroundConfig) => void;
@@ -92,6 +111,15 @@ export function usePlaygroundConfig(): PlaygroundActions {
     [config, setConfig],
   );
 
+  const setState = useCallback(
+    (id: WidgetId, state: string) => {
+      setConfig({
+        widgets: config.widgets.map((w) => (w.id === id ? { ...w, state } : w)),
+      });
+    },
+    [config, setConfig],
+  );
+
   const reorder = useCallback(
     (fromIndex: number, toIndex: number) => {
       if (fromIndex === toIndex) return;
@@ -114,5 +142,5 @@ export function usePlaygroundConfig(): PlaygroundActions {
     [setConfig],
   );
 
-  return { config, toggleWidget, setVersion, reorder, reset, replaceConfig };
+  return { config, toggleWidget, setVersion, setState, reorder, reset, replaceConfig };
 }

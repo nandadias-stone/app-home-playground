@@ -191,6 +191,17 @@ export function VersionCard({ widgetId, version }: VersionCardProps) {
         </div>
       </header>
 
+      {entry.states && entry.states.length > 0 && (
+        <div className={styles.statesRow}>
+          <span className={styles.statesLabel}>Estados:</span>
+          {entry.states.map((s) => (
+            <span key={s.id} className={styles.stateChip}>
+              {s.label}
+            </span>
+          ))}
+        </div>
+      )}
+
       <div className={styles.preview}>
         <div className={styles.frame}>
           <Comp key={refreshKey} version={version} />

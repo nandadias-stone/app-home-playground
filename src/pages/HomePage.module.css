@@ -16,3 +16,14 @@
   padding: var(--jade-space-200);
   flex: 1;
 }
+
+.slot {
+  display: contents;
+}
+
+.main > [data-state='flutuante'] {
+  display: block;
+  position: sticky;
+  top: var(--jade-header-height, 96px);
+  z-index: 5;
+}

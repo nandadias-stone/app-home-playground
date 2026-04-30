@@ -44,7 +44,17 @@ export function HomePage({ config, refreshKey: refreshKeyProp }: HomePageProps =
         {enabled.map((w) => {
           const entry = WIDGET_REGISTRY[w.id];
           const Comp = entry.component;
-          return <Comp key={`${w.id}-${refreshKey}`} version={w.version} />;
+          const stateId = w.state ?? entry.states?.[0]?.id;
+          return (
+            <div
+              key={`${w.id}-${refreshKey}`}
+              className={styles.slot}
+              data-widget={w.id}
+              data-state={stateId ?? ''}
+            >
+              <Comp version={w.version} />
+            </div>
+          );
         })}
       </main>
       <TabBar />

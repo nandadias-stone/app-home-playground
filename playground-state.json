@@ -7,24 +7,24 @@
         "version": "v1"
       },
       {
-        "id": "alerta-equipe",
-        "enabled": true,
-        "version": "v1"
-      },
-      {
-        "id": "alertas",
-        "enabled": true,
+        "id": "banner-capital-giro",
+        "enabled": false,
         "version": "v1"
       },
       {
         "id": "card-copiloto",
-        "enabled": true,
+        "enabled": false,
+        "version": "v1"
+      },
+      {
+        "id": "alertas",
+        "enabled": false,
         "version": "v1"
       },
       {
         "id": "card-saldo",
         "enabled": true,
-        "version": "v1"
+        "version": "v4"
       },
       {
         "id": "carrossel-top",
@@ -32,8 +32,8 @@
         "version": "v1"
       },
       {
-        "id": "banner-capital-giro",
-        "enabled": true,
+        "id": "alerta-equipe",
+        "enabled": false,
         "version": "v1"
       },
       {
@@ -89,7 +89,8 @@
       {
         "id": "card-meu-agente",
         "enabled": true,
-        "version": "v1"
+        "version": "v1",
+        "state": "fixo"
       }
     ]
   },
@@ -151,14 +152,20 @@
       "alerta-equipe": [
         "v1"
       ],
-      "alerta-dispositivo": [
-        "v1"
+      "alertas": [
+        "v1",
+        "v2",
+        "v3",
+        "v4",
+        "v5"
       ],
       "card-copiloto": [
         "v1"
       ],
       "card-saldo": [
         "v1",
+        "v12",
+        "v14",
         "v4",
         "v7"
       ],
@@ -199,9 +206,19 @@
         "v1"
       ],
       "card-meu-agente": [
-        "v1"
+        "v1",
+        "v2"
       ]
     },
-    "metadata": {}
+    "metadata": {
+      "card-saldo": {
+        "v14": {
+          "label": "Grafico"
+        },
+        "v4": {
+          "label": "nova xp"
+        }
+      }
+    }
   }
 }

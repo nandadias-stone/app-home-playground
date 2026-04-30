@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { HomePage } from './HomePage';
-import { PlaygroundProvider, Sidebar } from '@/playground';
+import { PlaygroundProvider, Sidebar, StatesPanel } from '@/playground';
 import { TopNav } from '@/components/TopNav';
 import styles from './PlaygroundPage.module.css';
 
@@ -38,6 +38,7 @@ export function PlaygroundPage() {
                 <HomePage />
               </div>
             </div>
+            <StatesPanel />
           </div>
         </div>
       </div>
