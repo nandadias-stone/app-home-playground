@@ -37,26 +37,41 @@ export function HomePage({ config, refreshKey: refreshKeyProp }: HomePageProps =
   const refreshKey = refreshKeyProp ?? playground?.refreshKey ?? 0;
   const enabled = resolvedWidgets.filter((w) => w.enabled);
 
+  // Separa fluxo normal vs flutuantes — flutuantes saem do .main e ficam
+  // num slot sticky no fim do .app, independente da ordem do sidebar.
+  const fixed: WidgetConfig[] = [];
+  const flutuantes: WidgetConfig[] = [];
+  for (const w of enabled) {
+    const entry = WIDGET_REGISTRY[w.id];
+    const forced = entry.versionForcedState?.[w.version];
+    const stateId = forced ?? w.state ?? entry.states?.[0]?.id;
+    if (stateId === 'flutuante') flutuantes.push(w);
+    else fixed.push(w);
+  }
+
+  const renderWidget = (w: WidgetConfig) => {
+    const entry = WIDGET_REGISTRY[w.id];
+    const Comp = entry.component;
+    return (
+      <div
+        key={`${w.id}-${refreshKey}`}
+        className={styles.slot}
+        data-widget={w.id}
+      >
+        <Comp version={w.version} />
+      </div>
+    );
+  };
+
   return (
     <div className={styles.app}>
       <Header />
-      <main className={styles.main}>
-        {enabled.map((w) => {
-          const entry = WIDGET_REGISTRY[w.id];
-          const Comp = entry.component;
-          const stateId = w.state ?? entry.states?.[0]?.id;
-          return (
-            <div
-              key={`${w.id}-${refreshKey}`}
-              className={styles.slot}
-              data-widget={w.id}
-              data-state={stateId ?? ''}
-            >
-              <Comp version={w.version} />
-            </div>
-          );
-        })}
-      </main>
+      <main className={styles.main}>{fixed.map(renderWidget)}</main>
+      {flutuantes.length > 0 && (
+        <div className={styles.flutuanteLayer} aria-label="Widgets flutuantes">
+          {flutuantes.map(renderWidget)}
+        </div>
+      )}
       <TabBar />
     </div>
   );

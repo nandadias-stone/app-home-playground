@@ -8,7 +8,11 @@ export function StatesPanel() {
   const items = config.widgets
     .filter((w) => w.enabled)
     .map((w) => ({ w, entry: WIDGET_REGISTRY[w.id] }))
-    .filter(({ entry }) => (entry.states?.length ?? 0) > 0);
+    .filter(({ entry, w }) => {
+      // versão com estado forçado não tem escolha — esconde do painel
+      if (entry.versionForcedState?.[w.version]) return false;
+      return (entry.states?.length ?? 0) > 0;
+    });
 
   if (items.length === 0) return null;
 

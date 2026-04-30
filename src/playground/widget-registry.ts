@@ -54,6 +54,12 @@ export type WidgetEntry = {
   component: ComponentType<{ version?: string }>;
   versions: readonly string[];
   states?: readonly WidgetState[];
+  /**
+   * Quando setado, força um estado específico para uma versão — bypassa a
+   * escolha do usuário e oculta o widget do StatesPanel. Útil pra versões
+   * intrinsecamente posicionadas (ex: avatar flutuante no canto).
+   */
+  versionForcedState?: Readonly<Record<string, string>>;
 };
 
 export const WIDGET_REGISTRY: Record<WidgetId, WidgetEntry> = {
@@ -183,6 +189,7 @@ export const WIDGET_REGISTRY: Record<WidgetId, WidgetEntry> = {
     component: CardMeuAgente as ComponentType<{ version?: string }>,
     versions: Object.keys(CardMeuAgenteVersions),
     states: CardMeuAgenteStates,
+    versionForcedState: { v4: 'flutuante' },
   },
 };
 

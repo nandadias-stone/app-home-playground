@@ -1,0 +1,43 @@
+.bubble {
+  position: relative;
+  align-self: flex-end;
+  width: 56px;
+  height: 56px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--jade-bg-surface);
+  cursor: pointer;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+.badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #d72e2e;
+  color: #fff;
+  border-radius: 999px;
+  border: 2px solid var(--jade-bg-surface);
+  font-family: var(--jade-font-family);
+  font-size: 12px;
+  font-weight: var(--jade-fw-semibold);
+  line-height: 1;
+}

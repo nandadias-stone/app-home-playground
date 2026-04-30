@@ -2,13 +2,15 @@
   display: flex;
   align-items: stretch;
   width: 100%;
-  min-height: calc(100vh - 48px);
+  height: calc(100vh - 48px);
+  overflow: hidden;
 }
 
 .stage {
   flex: 1;
   min-width: 0;
-  min-height: calc(100vh - 48px);
+  height: 100%;
+  overflow-y: auto;
   background:
     radial-gradient(circle at 20% 0%, rgba(48, 164, 108, 0.08), transparent 40%),
     radial-gradient(circle at 80% 100%, rgba(25, 87, 57, 0.08), transparent 40%),

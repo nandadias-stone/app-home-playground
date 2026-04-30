@@ -6,6 +6,7 @@
 :root {
   /* ============ Layout estrutural ============ */
   --jade-header-height: 96px;
+  --jade-tabbar-height: 88px;
 
   /* ============ Cores - Background ============ */
   --jade-bg-body: #f1f3f5;

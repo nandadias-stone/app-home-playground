@@ -22,9 +22,15 @@
         "version": "v1"
       },
       {
+        "id": "card-meu-agente",
+        "enabled": true,
+        "version": "v4",
+        "state": "flutuante"
+      },
+      {
         "id": "card-saldo",
         "enabled": true,
-        "version": "v4"
+        "version": "v1"
       },
       {
         "id": "carrossel-top",
@@ -85,12 +91,6 @@
         "id": "banners-bottom",
         "enabled": true,
         "version": "v1"
-      },
-      {
-        "id": "card-meu-agente",
-        "enabled": true,
-        "version": "v1",
-        "state": "fixo"
       }
     ]
   },
@@ -167,7 +167,8 @@
         "v12",
         "v14",
         "v4",
-        "v7"
+        "v7",
+        "v8"
       ],
       "carrossel-top": [
         "v1"
@@ -207,7 +208,9 @@
       ],
       "card-meu-agente": [
         "v1",
-        "v2"
+        "v2",
+        "v3",
+        "v4"
       ]
     },
     "metadata": {
@@ -217,6 +220,14 @@
         },
         "v4": {
           "label": "nova xp"
+        },
+        "v8": {
+          "label": "Simplificado"
+        }
+      },
+      "card-meu-agente": {
+        "v4": {
+          "label": "Avatar"
         }
       }
     }
