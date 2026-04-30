@@ -1,11 +1,11 @@
 .body {
   display: flex;
   flex-direction: column;
-  gap: var(--jade-space-150);
+  gap: var(--jade-space-100);
   padding: var(--jade-space-250);
 }
 
-.heroBlock {
+.saldoBlock {
   display: flex;
   flex-direction: column;
   gap: 2px;
@@ -33,35 +33,23 @@
   color: var(--jade-content-high);
 }
 
-.chips {
+.sparkRow {
   display: flex;
+  align-items: center;
   gap: var(--jade-space-100);
-  overflow-x: auto;
-  scrollbar-width: none;
-  margin: 0 calc(-1 * var(--jade-space-250));
-  padding: 0 var(--jade-space-250);
 }
 
-.chips::-webkit-scrollbar {
-  display: none;
+.spark {
+  flex-shrink: 0;
+  display: block;
 }
 
-.chip {
-  display: inline-flex;
-  flex-direction: column;
-  gap: 2px;
-  padding: var(--jade-space-100) var(--jade-space-150);
-  background-color: var(--jade-bg-neutral-subtle);
-  border-radius: var(--jade-radius-interactive);
+.trend {
   flex-shrink: 0;
 }
 
-.chipLabel {
-  color: var(--jade-content-medium);
-}
-
-.chipValue {
-  color: var(--jade-content-high);
+.trendMeta {
+  color: var(--jade-content-low);
 }
 
 .shortcuts {

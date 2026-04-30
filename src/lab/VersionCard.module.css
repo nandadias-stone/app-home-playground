@@ -58,6 +58,75 @@
   background-color: var(--jade-bg-positive-subtle);
 }
 
+.idChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px 4px 10px;
+  font-family: ui-monospace, monospace;
+  font-size: 11.5px;
+  font-weight: var(--jade-fw-medium);
+  color: var(--jade-content-medium);
+  background-color: var(--jade-bg-neutral-subtle);
+  border: 1px solid var(--jade-border-low);
+  border-radius: var(--jade-radius-pill);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease;
+  letter-spacing: -0.01em;
+  user-select: none;
+}
+
+.idChip:hover {
+  background-color: var(--jade-bg-surface);
+  color: var(--jade-content-high);
+  border-color: var(--jade-content-low);
+}
+
+.idChip:focus-visible {
+  outline: 2px solid var(--jade-bg-info);
+  outline-offset: 1px;
+}
+
+.idChipText {
+  white-space: nowrap;
+}
+
+.idChipIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.7;
+}
+
+.idChip:hover .idChipIcon {
+  opacity: 1;
+}
+
+.idChipCopied,
+.idChipCopied:hover {
+  background-color: var(--jade-bg-positive-subtle);
+  color: var(--jade-content-positive);
+  border-color: rgba(0, 69, 36, 0.25);
+}
+
+.idChipCopied .idChipIcon {
+  opacity: 1;
+}
+
+.promoted .idChip {
+  background-color: var(--jade-bg-positive-subtle);
+  border-color: rgba(0, 69, 36, 0.18);
+  color: var(--jade-content-positive);
+}
+
+.promoted .idChip:hover {
+  background-color: rgba(0, 164, 51, 0.14);
+}
+
 .labelInput {
   flex: 1;
   min-width: 0;
@@ -117,6 +186,37 @@
 
 .promoted .switchText {
   color: var(--jade-content-positive);
+}
+
+.refreshButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: transparent;
+  border: 0;
+  border-radius: var(--jade-radius-interactive);
+  color: var(--jade-content-medium);
+  cursor: pointer;
+}
+
+.refreshButton:hover {
+  color: var(--jade-content-brand);
+  background-color: var(--jade-bg-positive-subtle);
+}
+
+.refreshButton:active svg {
+  animation: refreshSpin 0.4s ease-out;
+}
+
+@keyframes refreshSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
 }
 
 .deleteButton {

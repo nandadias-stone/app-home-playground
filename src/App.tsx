@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { HomePage } from './pages/HomePage';
+import { AppPage } from './pages/AppPage';
 import { PlaygroundPage } from './pages/PlaygroundPage';
 import { LabPage, PromotionProvider } from './lab';
 
@@ -19,7 +19,7 @@ export default function App() {
   let page;
   if (route === '/lab') page = <LabPage />;
   else if (route === '/playground') page = <PlaygroundPage />;
-  else page = <HomePage />;
+  else page = <AppPage />;
 
   return <PromotionProvider>{page}</PromotionProvider>;
 }

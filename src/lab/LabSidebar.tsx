@@ -15,9 +15,6 @@ export function LabSidebar({ activeId, onSelect }: LabSidebarProps) {
       <header className={styles.header}>
         <h2 className={styles.title}>Lab</h2>
         <p className={styles.subtitle}>Versões dos widgets</p>
-        <a href="/playground" className={styles.backLink}>
-          ← Playground
-        </a>
       </header>
 
       <ul className={styles.list}>

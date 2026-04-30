@@ -1,0 +1,104 @@
+.greeting {
+  display: flex;
+  flex-direction: column;
+  gap: var(--jade-space-50);
+  padding: var(--jade-space-250) var(--jade-space-250) var(--jade-space-200);
+}
+
+.hello {
+  color: var(--jade-content-brand);
+}
+
+.message {
+  color: var(--jade-content-high);
+}
+
+.fadeIn {
+  animation: fadeInSlide 0.32s ease-out both;
+}
+
+@keyframes fadeInSlide {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.skeletonWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-height: 44px;
+  margin-top: 4px;
+}
+
+.skeleton {
+  display: block;
+  height: 14px;
+  border-radius: var(--jade-radius-xs);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 37, 73, 0.06) 0%,
+    rgba(0, 37, 73, 0.12) 50%,
+    rgba(0, 37, 73, 0.06) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.2s ease-in-out infinite;
+}
+
+.skelLine1 {
+  width: 92%;
+}
+
+.skelLine2 {
+  width: 64%;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.saldoRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--jade-space-100);
+  padding: var(--jade-space-150) var(--jade-space-250);
+  width: 100%;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  text-align: left;
+}
+
+.label {
+  color: var(--jade-content-medium);
+}
+
+.amountWrap {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--jade-space-100);
+}
+
+.amount {
+  color: var(--jade-content-high);
+}
+
+.shortcuts {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--jade-space-100);
+  padding: var(--jade-space-250);
+  border-top: 1px solid var(--jade-border-low);
+}

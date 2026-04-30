@@ -1,0 +1,109 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--jade-space-100);
+}
+
+.alertWrap {
+  display: grid;
+  width: 100%;
+}
+
+.layer {
+  grid-area: 1 / 1;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+  display: flex;
+}
+
+.layer > * {
+  flex: 1;
+}
+
+.layerActive {
+  opacity: 1;
+  visibility: visible;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--jade-space-100);
+}
+
+.navButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background-color: var(--jade-bg-surface);
+  border: 1px solid var(--jade-border-low);
+  border-radius: 50%;
+  cursor: pointer;
+  color: var(--jade-content-medium);
+}
+
+.navButton:hover {
+  background-color: var(--jade-bg-neutral-subtle);
+  color: var(--jade-content-high);
+}
+
+.dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  border: 0;
+  background-color: var(--jade-content-low);
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.2s ease, width 0.2s ease;
+}
+
+.empty {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--jade-space-100);
+  padding: var(--jade-space-150) var(--jade-space-200);
+  border: 1px dashed var(--jade-border-low);
+  border-radius: var(--jade-radius-medium);
+  font-family: var(--jade-font-family);
+  font-size: var(--jade-fs-75);
+  color: var(--jade-content-medium);
+}
+
+.emptyText {
+  flex: 1;
+}
+
+.restoreLink {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  font-family: var(--jade-font-family);
+  font-size: var(--jade-fs-50);
+  font-weight: var(--jade-fw-semibold);
+  color: var(--jade-content-brand);
+  padding: 6px 8px;
+  border-radius: var(--jade-radius-xs);
+  align-self: center;
+}
+
+.restoreLink:hover {
+  background-color: var(--jade-bg-positive-subtle);
+}
+
+.dotActive {
+  width: 18px;
+  border-radius: 999px;
+  background-color: var(--jade-content-brand);
+}

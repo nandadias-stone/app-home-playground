@@ -2,12 +2,12 @@
   display: flex;
   flex-direction: column;
   width: 280px;
-  height: 100vh;
+  height: calc(100vh - 48px);
   background-color: var(--jade-bg-surface);
   border-right: 1px solid var(--jade-border-low);
   flex-shrink: 0;
   position: sticky;
-  top: 0;
+  top: 48px;
 }
 
 .header {

@@ -1,0 +1,207 @@
+{
+  "playground.config": {
+    "widgets": [
+      {
+        "id": "onboarding",
+        "enabled": false,
+        "version": "v1"
+      },
+      {
+        "id": "alerta-equipe",
+        "enabled": true,
+        "version": "v1"
+      },
+      {
+        "id": "alertas",
+        "enabled": true,
+        "version": "v1"
+      },
+      {
+        "id": "card-copiloto",
+        "enabled": true,
+        "version": "v1"
+      },
+      {
+        "id": "card-saldo",
+        "enabled": true,
+        "version": "v1"
+      },
+      {
+        "id": "carrossel-top",
+        "enabled": true,
+        "version": "v1"
+      },
+      {
+        "id": "banner-capital-giro",
+        "enabled": true,
+        "version": "v1"
+      },
+      {
+        "id": "banner-autocredenciamento",
+        "enabled": true,
+        "version": "v1"
+      },
+      {
+        "id": "card-recebimentos",
+        "enabled": true,
+        "version": "v1"
+      },
+      {
+        "id": "toggle-ton-fast",
+        "enabled": true,
+        "version": "v1"
+      },
+      {
+        "id": "card-vendas",
+        "enabled": true,
+        "version": "v1"
+      },
+      {
+        "id": "card-cartao-tracking",
+        "enabled": true,
+        "version": "v1"
+      },
+      {
+        "id": "card-cartao-fatura",
+        "enabled": true,
+        "version": "v1"
+      },
+      {
+        "id": "card-meta-vendas",
+        "enabled": true,
+        "version": "v1"
+      },
+      {
+        "id": "card-maquininhas",
+        "enabled": true,
+        "version": "v1"
+      },
+      {
+        "id": "grid-atalhos",
+        "enabled": true,
+        "version": "v1"
+      },
+      {
+        "id": "banners-bottom",
+        "enabled": true,
+        "version": "v1"
+      },
+      {
+        "id": "card-meu-agente",
+        "enabled": true,
+        "version": "v1"
+      }
+    ]
+  },
+  "playground.presets": {
+    "presets": [
+      {
+        "id": "test-1",
+        "name": "Home enxuta",
+        "config": {
+          "widgets": [
+            {
+              "id": "card-saldo",
+              "enabled": true,
+              "version": "v1"
+            },
+            {
+              "id": "card-recebimentos",
+              "enabled": true,
+              "version": "v1"
+            },
+            {
+              "id": "card-vendas",
+              "enabled": true,
+              "version": "v1"
+            }
+          ]
+        },
+        "createdAt": 1777550763435,
+        "updatedAt": 1777550763435
+      },
+      {
+        "id": "test-2",
+        "name": "Cenário Joaquina",
+        "config": {
+          "widgets": [
+            {
+              "id": "card-saldo",
+              "enabled": true,
+              "version": "v7"
+            },
+            {
+              "id": "alertas",
+              "enabled": true,
+              "version": "v1"
+            }
+          ]
+        },
+        "createdAt": 1777550763435,
+        "updatedAt": 1777550763435
+      }
+    ],
+    "activePresetId": null
+  },
+  "promotion": {
+    "promoted": {
+      "onboarding": [
+        "v1"
+      ],
+      "alerta-equipe": [
+        "v1"
+      ],
+      "alerta-dispositivo": [
+        "v1"
+      ],
+      "card-copiloto": [
+        "v1"
+      ],
+      "card-saldo": [
+        "v1",
+        "v4",
+        "v7"
+      ],
+      "carrossel-top": [
+        "v1"
+      ],
+      "banner-capital-giro": [
+        "v1"
+      ],
+      "banner-autocredenciamento": [
+        "v1"
+      ],
+      "card-recebimentos": [
+        "v1"
+      ],
+      "toggle-ton-fast": [
+        "v1"
+      ],
+      "card-vendas": [
+        "v1"
+      ],
+      "card-cartao-tracking": [
+        "v1"
+      ],
+      "card-cartao-fatura": [
+        "v1"
+      ],
+      "card-meta-vendas": [
+        "v1"
+      ],
+      "card-maquininhas": [
+        "v1"
+      ],
+      "grid-atalhos": [
+        "v1"
+      ],
+      "banners-bottom": [
+        "v1"
+      ],
+      "card-meu-agente": [
+        "v1"
+      ]
+    },
+    "metadata": {}
+  }
+}

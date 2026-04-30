@@ -1,0 +1,69 @@
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  height: 48px;
+  background-color: var(--jade-bg-surface);
+  border-bottom: 1px solid var(--jade-border-low);
+  padding: 0 var(--jade-space-200);
+  gap: var(--jade-space-300);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--jade-space-100);
+}
+
+.brandMark {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  background-color: var(--jade-bg-brand);
+}
+
+.brandLabel {
+  font-family: var(--jade-font-family);
+  font-size: var(--jade-fs-75);
+  font-weight: var(--jade-fw-semibold);
+  color: var(--jade-content-high);
+  letter-spacing: -0.006em;
+}
+
+.tabs {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--jade-space-50);
+}
+
+.tab {
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  padding: 0 var(--jade-space-150);
+  border-radius: var(--jade-radius-interactive);
+  font-family: var(--jade-font-family);
+  font-size: var(--jade-fs-75);
+  font-weight: var(--jade-fw-medium);
+  color: var(--jade-content-medium);
+  text-decoration: none;
+  letter-spacing: -0.006em;
+  transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+.tab:hover {
+  color: var(--jade-content-high);
+  background-color: var(--jade-bg-neutral-subtle);
+}
+
+.tabActive {
+  color: var(--jade-content-high);
+  background-color: var(--jade-bg-neutral-subtle);
+  font-weight: var(--jade-fw-semibold);
+}
+
+.tabActive:hover {
+  background-color: rgba(0, 37, 73, 0.09);
+}

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { HomePage } from './HomePage';
 import { PlaygroundProvider, Sidebar } from '@/playground';
+import { TopNav } from '@/components/TopNav';
 import styles from './PlaygroundPage.module.css';
 
 export function PlaygroundPage() {
@@ -8,6 +9,7 @@ export function PlaygroundPage() {
 
   return (
     <PlaygroundProvider>
+      <TopNav active="playground" />
       <div className={styles.layout}>
         <Sidebar open={sidebarOpen} onRequestClose={() => setSidebarOpen(false)} />
 

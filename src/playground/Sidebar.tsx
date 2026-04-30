@@ -2,6 +2,7 @@ import { DndContext, closestCenter, type DragEndEvent } from '@dnd-kit/core';
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { usePlayground } from './PlaygroundContext';
 import { SortableWidgetItem } from './SortableWidgetItem';
+import { PresetsMenu } from './PresetsMenu';
 import styles from './Sidebar.module.css';
 
 type SidebarProps = {
@@ -10,7 +11,7 @@ type SidebarProps = {
 };
 
 export function Sidebar({ open = true, onRequestClose }: SidebarProps) {
-  const { config, toggleWidget, setVersion, reorder, reset } = usePlayground();
+  const { config, toggleWidget, setVersion, reorder, reset, triggerRefresh } = usePlayground();
 
   const ids = config.widgets.map((w) => w.id);
   const enabledCount = config.widgets.filter((w) => w.enabled).length;
@@ -32,21 +33,41 @@ export function Sidebar({ open = true, onRequestClose }: SidebarProps) {
           <p className={styles.subtitle}>
             {enabledCount} de {config.widgets.length} widgets visíveis
           </p>
-          <a href="/lab" className={styles.labLink}>
-            Lab de versões →
-          </a>
         </div>
-        {onRequestClose && (
+        <div className={styles.headerActions}>
           <button
             type="button"
-            className={styles.closeButton}
-            onClick={onRequestClose}
-            aria-label="Fechar configuração"
+            className={styles.refreshButton}
+            onClick={triggerRefresh}
+            aria-label="Recarregar widgets"
+            title="Recarregar widgets (rever animações)"
           >
-            ✕
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path
+                d="M21 12a9 9 0 1 1-3.5-7.13M21 4v5h-5"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
           </button>
-        )}
+          {onRequestClose && (
+            <button
+              type="button"
+              className={styles.closeButton}
+              onClick={onRequestClose}
+              aria-label="Fechar configuração"
+            >
+              ✕
+            </button>
+          )}
+        </div>
       </header>
+
+      <div className={styles.presetsBar}>
+        <PresetsMenu />
+      </div>
 
       <div className={styles.list}>
         <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>

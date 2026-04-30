@@ -24,6 +24,12 @@ export function SortableWidgetItem({ widget, onToggle, onVersionChange }: Props)
     : entry.versions;
   const hasMultipleVersions = availableVersions.length > 1;
 
+  const formatVersionLabel = (version: string) => {
+    const meta = promotion?.getMetadata(widget.id, version);
+    const label = meta?.label?.trim() || (version === 'v1' ? 'Atual' : '');
+    return label ? `${version} · ${label}` : version;
+  };
+
   const style: React.CSSProperties = {
     transform: CSS.Transform.toString(transform),
     transition,
@@ -60,12 +66,12 @@ export function SortableWidgetItem({ widget, onToggle, onVersionChange }: Props)
           >
             {availableVersions.map((v) => (
               <option key={v} value={v}>
-                {v}
+                {formatVersionLabel(v)}
               </option>
             ))}
           </select>
         ) : (
-          <span className={styles.versionStatic}>{widget.version}</span>
+          <span className={styles.versionStatic}>{formatVersionLabel(widget.version)}</span>
         )}
       </div>
 

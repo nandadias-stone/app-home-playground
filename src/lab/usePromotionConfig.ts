@@ -1,7 +1,8 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback } from 'react';
+import { useFileBackedState } from '@/state/useFileBackedState';
 import { WIDGET_REGISTRY, type WidgetId } from '@/playground';
 
-const STORAGE_KEY = 'stone-promotion-v1';
+const STATE_KEY = 'promotion';
 
 export type VersionMetadata = {
   label?: string;
@@ -57,25 +58,6 @@ function sanitize(raw: unknown): PromotionConfig {
   return { promoted, metadata };
 }
 
-function load(): PromotionConfig {
-  if (typeof window === 'undefined') return buildDefault();
-  try {
-    const raw = window.localStorage.getItem(STORAGE_KEY);
-    if (!raw) return buildDefault();
-    return sanitize(JSON.parse(raw));
-  } catch {
-    return buildDefault();
-  }
-}
-
-function persist(config: PromotionConfig) {
-  try {
-    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(config));
-  } catch {
-    // ignora
-  }
-}
-
 export type PromotionActions = {
   config: PromotionConfig;
   isPromoted: (widgetId: WidgetId, version: string) => boolean;
@@ -88,11 +70,11 @@ export type PromotionActions = {
 };
 
 export function usePromotionConfig(): PromotionActions {
-  const [config, setConfig] = useState<PromotionConfig>(() => load());
-
-  useEffect(() => {
-    persist(config);
-  }, [config]);
+  const [config, setConfig] = useFileBackedState<PromotionConfig>(
+    STATE_KEY,
+    buildDefault(),
+    sanitize,
+  );
 
   const isPromoted = useCallback(
     (widgetId: WidgetId, version: string) => {
@@ -101,15 +83,16 @@ export function usePromotionConfig(): PromotionActions {
     [config],
   );
 
-  const togglePromotion = useCallback((widgetId: WidgetId, version: string) => {
-    setConfig((prev) => {
-      const current = prev.promoted[widgetId] ?? [];
+  const togglePromotion = useCallback(
+    (widgetId: WidgetId, version: string) => {
+      const current = config.promoted[widgetId] ?? [];
       const next = current.includes(version)
         ? current.filter((v) => v !== version)
         : [...current, version].sort();
-      return { ...prev, promoted: { ...prev.promoted, [widgetId]: next } };
-    });
-  }, []);
+      setConfig({ ...config, promoted: { ...config.promoted, [widgetId]: next } });
+    },
+    [config, setConfig],
+  );
 
   const getPromotedVersions = useCallback(
     (widgetId: WidgetId) => config.promoted[widgetId] ?? [],
@@ -123,18 +106,19 @@ export function usePromotionConfig(): PromotionActions {
     [config],
   );
 
-  const setLabel = useCallback((widgetId: WidgetId, version: string, label: string) => {
-    setConfig((prev) => {
-      const widgetMeta = { ...(prev.metadata[widgetId] ?? {}) };
+  const setLabel = useCallback(
+    (widgetId: WidgetId, version: string, label: string) => {
+      const widgetMeta = { ...(config.metadata[widgetId] ?? {}) };
       const trimmed = label.trim();
       if (trimmed === '') {
         delete widgetMeta[version];
       } else {
         widgetMeta[version] = { ...(widgetMeta[version] ?? {}), label: trimmed };
       }
-      return { ...prev, metadata: { ...prev.metadata, [widgetId]: widgetMeta } };
-    });
-  }, []);
+      setConfig({ ...config, metadata: { ...config.metadata, [widgetId]: widgetMeta } });
+    },
+    [config, setConfig],
+  );
 
   const hardDeleteVersion = useCallback(
     async (widgetId: WidgetId, version: string) => {
@@ -152,25 +136,22 @@ export function usePromotionConfig(): PromotionActions {
         throw new Error(body.error || `Falha ao excluir (${res.status})`);
       }
       // Limpa estado local antes de recarregar
-      setConfig((prev) => {
-        const promoted = { ...prev.promoted };
-        const list = promoted[widgetId] ?? [];
-        promoted[widgetId] = list.filter((v) => v !== version);
-        const metadata = { ...prev.metadata };
-        const widgetMeta = { ...(metadata[widgetId] ?? {}) };
-        delete widgetMeta[version];
-        metadata[widgetId] = widgetMeta;
-        return { promoted, metadata };
-      });
-      // Reload pra import.meta.glob recompilar e remover a versão
+      const promoted = { ...config.promoted };
+      const list = promoted[widgetId] ?? [];
+      promoted[widgetId] = list.filter((v) => v !== version);
+      const metadata = { ...config.metadata };
+      const widgetMeta = { ...(metadata[widgetId] ?? {}) };
+      delete widgetMeta[version];
+      metadata[widgetId] = widgetMeta;
+      setConfig({ promoted, metadata });
       setTimeout(() => window.location.reload(), 100);
     },
-    [],
+    [config, setConfig],
   );
 
   const reset = useCallback(() => {
     setConfig(buildDefault());
-  }, []);
+  }, [setConfig]);
 
   return {
     config,

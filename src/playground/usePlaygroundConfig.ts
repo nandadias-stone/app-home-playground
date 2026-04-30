@@ -1,8 +1,9 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback } from 'react';
+import { useFileBackedState } from '@/state/useFileBackedState';
 import { DEFAULT_ORDER, WIDGET_REGISTRY, type WidgetId } from './widget-registry';
 import type { PlaygroundConfig, WidgetConfig } from './types';
 
-const STORAGE_KEY = 'stone-playground-config-v1';
+const STATE_KEY = 'playground.config';
 
 function buildDefaultConfig(): PlaygroundConfig {
   return {
@@ -14,8 +15,8 @@ function buildDefaultConfig(): PlaygroundConfig {
   };
 }
 
-function sanitize(raw: unknown): PlaygroundConfig {
-  const defaults = buildDefaultConfig();
+function sanitize(raw: unknown, fallback?: PlaygroundConfig): PlaygroundConfig {
+  const defaults = fallback ?? buildDefaultConfig();
   if (!raw || typeof raw !== 'object') return defaults;
 
   const candidate = raw as Partial<PlaygroundConfig>;
@@ -42,7 +43,6 @@ function sanitize(raw: unknown): PlaygroundConfig {
     });
   }
 
-  // Adiciona widgets novos (ainda não vistos) ao final, na ordem default
   for (const id of DEFAULT_ORDER) {
     if (!seen.has(id)) {
       valid.push({
@@ -56,65 +56,63 @@ function sanitize(raw: unknown): PlaygroundConfig {
   return { widgets: valid };
 }
 
-function load(): PlaygroundConfig {
-  if (typeof window === 'undefined') return buildDefaultConfig();
-  try {
-    const raw = window.localStorage.getItem(STORAGE_KEY);
-    if (!raw) return buildDefaultConfig();
-    return sanitize(JSON.parse(raw));
-  } catch {
-    return buildDefaultConfig();
-  }
-}
-
-function persist(config: PlaygroundConfig) {
-  try {
-    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(config));
-  } catch {
-    // ignora quota / privado
-  }
-}
-
 export type PlaygroundActions = {
   config: PlaygroundConfig;
   toggleWidget: (id: WidgetId) => void;
   setVersion: (id: WidgetId, version: string) => void;
   reorder: (fromIndex: number, toIndex: number) => void;
   reset: () => void;
+  replaceConfig: (next: PlaygroundConfig) => void;
 };
 
 export function usePlaygroundConfig(): PlaygroundActions {
-  const [config, setConfig] = useState<PlaygroundConfig>(() => load());
+  const [config, setConfig] = useFileBackedState<PlaygroundConfig>(
+    STATE_KEY,
+    buildDefaultConfig(),
+    sanitize,
+  );
 
-  useEffect(() => {
-    persist(config);
-  }, [config]);
+  const toggleWidget = useCallback(
+    (id: WidgetId) => {
+      setConfig({
+        widgets: config.widgets.map((w) =>
+          w.id === id ? { ...w, enabled: !w.enabled } : w,
+        ),
+      });
+    },
+    [config, setConfig],
+  );
 
-  const toggleWidget = useCallback((id: WidgetId) => {
-    setConfig((prev) => ({
-      widgets: prev.widgets.map((w) => (w.id === id ? { ...w, enabled: !w.enabled } : w)),
-    }));
-  }, []);
+  const setVersion = useCallback(
+    (id: WidgetId, version: string) => {
+      setConfig({
+        widgets: config.widgets.map((w) => (w.id === id ? { ...w, version } : w)),
+      });
+    },
+    [config, setConfig],
+  );
 
-  const setVersion = useCallback((id: WidgetId, version: string) => {
-    setConfig((prev) => ({
-      widgets: prev.widgets.map((w) => (w.id === id ? { ...w, version } : w)),
-    }));
-  }, []);
-
-  const reorder = useCallback((fromIndex: number, toIndex: number) => {
-    setConfig((prev) => {
-      if (fromIndex === toIndex) return prev;
-      const next = prev.widgets.slice();
+  const reorder = useCallback(
+    (fromIndex: number, toIndex: number) => {
+      if (fromIndex === toIndex) return;
+      const next = config.widgets.slice();
       const [moved] = next.splice(fromIndex, 1);
       next.splice(toIndex, 0, moved);
-      return { widgets: next };
-    });
-  }, []);
+      setConfig({ widgets: next });
+    },
+    [config, setConfig],
+  );
 
   const reset = useCallback(() => {
     setConfig(buildDefaultConfig());
-  }, []);
+  }, [setConfig]);
 
-  return { config, toggleWidget, setVersion, reorder, reset };
+  const replaceConfig = useCallback(
+    (next: PlaygroundConfig) => {
+      setConfig(sanitize(next));
+    },
+    [setConfig],
+  );
+
+  return { config, toggleWidget, setVersion, reorder, reset, replaceConfig };
 }

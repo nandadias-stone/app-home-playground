@@ -1,7 +1,7 @@
 import { type ComponentType } from 'react';
 import { Onboarding, OnboardingVersions } from '@/widgets/Onboarding';
 import { AlertaEquipe, AlertaEquipeVersions } from '@/widgets/AlertaEquipe';
-import { AlertaDispositivo, AlertaDispositivoVersions } from '@/widgets/AlertaDispositivo';
+import { Alertas, AlertasVersions } from '@/widgets/Alertas';
 import { CardCopiloto, CardCopilotoVersions } from '@/widgets/CardCopiloto';
 import { CardSaldo, CardSaldoVersions } from '@/widgets/CardSaldo';
 import { CarrosselTop, CarrosselTopVersions } from '@/widgets/CarrosselTop';
@@ -24,7 +24,7 @@ import { CardMeuAgente, CardMeuAgenteVersions } from '@/widgets/CardMeuAgente';
 export type WidgetId =
   | 'onboarding'
   | 'alerta-equipe'
-  | 'alerta-dispositivo'
+  | 'alertas'
   | 'card-copiloto'
   | 'card-saldo'
   | 'carrossel-top'
@@ -64,12 +64,12 @@ export const WIDGET_REGISTRY: Record<WidgetId, WidgetEntry> = {
     component: AlertaEquipe as ComponentType<{ version?: string }>,
     versions: Object.keys(AlertaEquipeVersions),
   },
-  'alerta-dispositivo': {
-    id: 'alerta-dispositivo',
-    label: 'Alerta Dispositivo',
-    folderName: 'AlertaDispositivo',
-    component: AlertaDispositivo as ComponentType<{ version?: string }>,
-    versions: Object.keys(AlertaDispositivoVersions),
+  'alertas': {
+    id: 'alertas',
+    label: 'Alertas',
+    folderName: 'Alertas',
+    component: Alertas as ComponentType<{ version?: string }>,
+    versions: Object.keys(AlertasVersions),
   },
   'card-copiloto': {
     id: 'card-copiloto',
@@ -181,7 +181,7 @@ export const WIDGET_REGISTRY: Record<WidgetId, WidgetEntry> = {
 export const DEFAULT_ORDER: WidgetId[] = [
   'onboarding',
   'alerta-equipe',
-  'alerta-dispositivo',
+  'alertas',
   'card-copiloto',
   'card-saldo',
   'carrossel-top',

@@ -7,6 +7,6 @@ const modules = import.meta.glob<Record<string, ComponentType<any>>>('./v*.tsx',
 
 const widget = createVersionedWidget(modules);
 
-export const AlertaDispositivo = widget.component;
-export const AlertaDispositivoVersions = widget.versions;
-export type AlertaDispositivoVersion = string;
+export const Alertas = widget.component;
+export const AlertasVersions = widget.versions;
+export type AlertasVersion = string;
