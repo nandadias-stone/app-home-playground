@@ -4,6 +4,7 @@ export type WidgetConfig = {
   id: WidgetId;
   enabled: boolean;
   version: string;
+  state?: string;
 };
 
 export type PlaygroundConfig = {

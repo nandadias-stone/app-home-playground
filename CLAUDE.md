@@ -54,6 +54,24 @@ Se precisar fazer manualmente:
 rm src/widgets/<Widget>/v<N>.tsx src/widgets/<Widget>/v<N>.module.css
 ```
 
+## Como adicionar estados a um widget
+
+Estados são variações de **comportamento** (não visuais) — ex: posicionamento `fixo` vs `flutuante`. Diferente de versões, ficam declarados num único arquivo e a primeira entrada do array é o **default**.
+
+1. Em `src/widgets/<Widget>/index.tsx`, exporte:
+   ```ts
+   export const <Widget>States = [
+     { id: 'fixo',      label: 'Fixo' },
+     { id: 'flutuante', label: 'Flutuante' },
+   ] as const;
+   ```
+2. Em `src/playground/widget-registry.ts`:
+   - Importe `<Widget>States` junto com `<Widget>Versions`
+   - Adicione `states: <Widget>States` no `WidgetEntry` correspondente
+3. Se o estado tem efeito visual no layout, ajuste `src/pages/HomePage.module.css` com seletor `.main > [data-state='<id>']` (ou específico via `[data-widget='…'][data-state='…']`).
+
+No `/playground` aparece automaticamente uma sidebar flutuante à direita do iPhone com os estados disponíveis dos widgets ativos. No `/lab`, os estados aparecem como chips informativos no header de cada versão (não editáveis — são código).
+
 ## Estrutura geral do projeto
 
 - `src/widgets/<Widget>/` — cada widget tem `v1.tsx`, `v1.module.css`, `index.tsx` (switcher) e versões adicionais `vN.*`

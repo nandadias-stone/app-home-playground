@@ -4,6 +4,9 @@
  * Referência interna: https://github.com/stone-payments/jade-design-tokens
  */
 :root {
+  /* ============ Layout estrutural ============ */
+  --jade-header-height: 96px;
+
   /* ============ Cores - Background ============ */
   --jade-bg-body: #f1f3f5;
   --jade-bg-surface: #ffffff;

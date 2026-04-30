@@ -56,6 +56,7 @@ export function PlaygroundProvider({ children }: { children: ReactNode }) {
     config: config.config,
     toggleWidget: config.toggleWidget,
     setVersion: config.setVersion,
+    setState: config.setState,
     reorder: config.reorder,
     reset: config.reset,
     replaceConfig: config.replaceConfig,

@@ -19,7 +19,11 @@ import { CardMetaVendas, CardMetaVendasVersions } from '@/widgets/CardMetaVendas
 import { CardMaquininhas, CardMaquininhasVersions } from '@/widgets/CardMaquininhas';
 import { GridAtalhos, GridAtalhosVersions } from '@/widgets/GridAtalhos';
 import { BannersBottom, BannersBottomVersions } from '@/widgets/BannersBottom';
-import { CardMeuAgente, CardMeuAgenteVersions } from '@/widgets/CardMeuAgente';
+import {
+  CardMeuAgente,
+  CardMeuAgenteVersions,
+  CardMeuAgenteStates,
+} from '@/widgets/CardMeuAgente';
 
 export type WidgetId =
   | 'onboarding'
@@ -41,12 +45,15 @@ export type WidgetId =
   | 'banners-bottom'
   | 'card-meu-agente';
 
+export type WidgetState = { id: string; label: string };
+
 export type WidgetEntry = {
   id: WidgetId;
   label: string;
   folderName: string;
   component: ComponentType<{ version?: string }>;
   versions: readonly string[];
+  states?: readonly WidgetState[];
 };
 
 export const WIDGET_REGISTRY: Record<WidgetId, WidgetEntry> = {
@@ -175,6 +182,7 @@ export const WIDGET_REGISTRY: Record<WidgetId, WidgetEntry> = {
     folderName: 'CardMeuAgente',
     component: CardMeuAgente as ComponentType<{ version?: string }>,
     versions: Object.keys(CardMeuAgenteVersions),
+    states: CardMeuAgenteStates,
   },
 };
 

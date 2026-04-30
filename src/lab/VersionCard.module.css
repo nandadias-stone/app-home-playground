@@ -237,6 +237,31 @@
   background-color: rgba(196, 71, 76, 0.08);
 }
 
+.statesRow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--jade-space-100);
+  padding: 0 var(--jade-space-200) var(--jade-space-150);
+  font-family: var(--jade-font-family);
+  font-size: 12px;
+}
+
+.statesLabel {
+  color: var(--jade-content-medium);
+  font-weight: 500;
+}
+
+.stateChip {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  background: var(--jade-bg-neutral-subtle, #f1f3f5);
+  color: var(--jade-content-high);
+  border-radius: 999px;
+  font-weight: 500;
+}
+
 .preview {
   background-color: var(--jade-bg-body);
   padding: var(--jade-space-200);
