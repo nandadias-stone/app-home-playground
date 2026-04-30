@@ -1,0 +1,69 @@
+.block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--jade-space-50);
+  padding: var(--jade-space-250);
+}
+
+.label {
+  color: var(--jade-content-medium);
+}
+
+.amount {
+  color: var(--jade-content-high);
+}
+
+.bars {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  height: 80px;
+  margin-top: var(--jade-space-150);
+}
+
+.barCol {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  height: 100%;
+}
+
+.barTrack {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  background: var(--jade-bg-neutral-subtle, #f1f3f5);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.bar {
+  width: 100%;
+  background: var(--jade-bg-brand);
+  border-radius: 4px;
+  min-height: 4px;
+  opacity: 0.45;
+  transition: opacity 0.18s ease;
+}
+
+.bar[data-current='true'] {
+  opacity: 1;
+}
+
+.dayLabel {
+  font-family: var(--jade-font-family);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--jade-content-medium);
+}
+
+.shortcuts {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--jade-space-100);
+  padding: var(--jade-space-250);
+  border-top: 1px solid var(--jade-border-low);
+}

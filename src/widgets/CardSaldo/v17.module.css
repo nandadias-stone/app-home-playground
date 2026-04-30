@@ -1,0 +1,78 @@
+.block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--jade-space-50);
+  padding: var(--jade-space-250);
+}
+
+.label {
+  color: var(--jade-content-medium);
+}
+
+.amount {
+  color: var(--jade-content-high);
+}
+
+.deltas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--jade-space-100);
+  margin-top: var(--jade-space-150);
+}
+
+.deltaCard {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--jade-space-150);
+  background: var(--jade-bg-neutral-subtle, #f1f3f5);
+  border-radius: 8px;
+}
+
+.deltaCard[data-up='true'] {
+  background: rgba(48, 164, 108, 0.10);
+}
+
+.deltaCard[data-up='false'] {
+  background: rgba(196, 71, 76, 0.10);
+}
+
+.deltaLabel {
+  font-family: var(--jade-font-family);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--jade-content-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.deltaValue {
+  font-family: var(--jade-font-family);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--jade-content-high);
+}
+
+.deltaCard[data-up='true'] .deltaValue {
+  color: var(--jade-content-positive, #1f8c4e);
+}
+
+.deltaCard[data-up='false'] .deltaValue {
+  color: var(--jade-content-negative, #c4474c);
+}
+
+.deltaPct {
+  font-family: var(--jade-font-family);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--jade-content-medium);
+}
+
+.shortcuts {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--jade-space-100);
+  padding: var(--jade-space-250);
+  border-top: 1px solid var(--jade-border-low);
+}
