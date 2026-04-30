@@ -1,0 +1,65 @@
+.card {
+  padding: 0;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  gap: var(--jade-space-150);
+  padding: var(--jade-space-200) var(--jade-space-250);
+  width: 100%;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  text-align: left;
+}
+
+.avatarWrap {
+  position: relative;
+  flex-shrink: 0;
+  display: inline-flex;
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+.badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #d72e2e;
+  color: #fff;
+  border-radius: 999px;
+  border: 2px solid var(--jade-bg-surface);
+  font-family: var(--jade-font-family);
+  font-size: 11px;
+  font-weight: var(--jade-fw-semibold);
+  line-height: 1;
+}
+
+.body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--jade-space-50);
+  min-width: 0;
+}
+
+.titulo {
+  color: var(--jade-content-high);
+}
+
+.descricao {
+  color: var(--jade-content-medium);
+}
